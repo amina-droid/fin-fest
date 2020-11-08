@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const ParkDecorations: React.FC = () => (
   <svg x="553.67" y="257.31">

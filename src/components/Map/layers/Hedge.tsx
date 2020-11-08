@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const Hedge: React.FC = () => (
   <svg x="376.77" y="179.2">

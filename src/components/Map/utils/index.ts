@@ -1,1 +1,1 @@
-export { default as SVGLink } from "./SVGLink";
+export { default as SVGLink } from './SVGLink';

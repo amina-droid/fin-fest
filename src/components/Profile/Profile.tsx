@@ -88,10 +88,12 @@ const Profile: React.FC = () => {
 
   const scores = user?.score || '0';
   const content = (
-    <div>
-      Мои баллы: {scores}
+    <>
+      <div className={s.profileTooltip}>
+        Мои баллы: {scores}
+      </div>
       <Button type="text" block danger onClick={logout}>Выйти</Button>
-    </div>
+    </>
   );
 
   return (

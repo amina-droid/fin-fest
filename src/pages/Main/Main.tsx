@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import {
   Layout, Menu, Typography, Button, Affix,
 } from 'antd';
@@ -10,33 +10,72 @@ import { Profile } from '../../components/Profile';
 const { Header, Content } = Layout;
 const { Title } = Typography;
 
-const Main = () => (
-  <>
-    <Affix offsetTop={0}>
-      <Header className={s.header}>
-        <div className={s.logo}>Финансовый фестиваль</div>
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['']}>
-          <Menu.Item key="1">О проекте</Menu.Item>
-          <Menu.Item key="2">Карта</Menu.Item>
-          <Menu.Item key="3">Партнеры</Menu.Item>
-          <Menu.Item key="4">Отзывы</Menu.Item>
-        </Menu>
-        <Profile />
-      </Header>
-    </Affix>
-    <Content className={s.container}>
-      <Layout id="main" className={s.banner}>
-        <Title className={s.title}>Финансовый фестиваль {'\n'} для всей семьи</Title>
-        <Button className={s.mapButton} type="primary">
-          Карта
-        </Button>
-      </Layout>
-      <Layout id="map" className={s.map}>
-        <Title>Карта</Title>
-        <Map />
-      </Layout>
-    </Content>
-  </>
-);
+type MenuItemProps = React.ComponentProps<typeof Menu['Item']>;
+type MenuItemEvent = Parameters<NonNullable<MenuItemProps['onClick']>>[0]
+
+const BLOCKS: { [key: string]: string } = {
+  main: 'Главная',
+  map: 'Карта',
+  partners: 'Партнеры',
+  reviews: 'Отзывы',
+  about: 'О проекте',
+};
+
+const Main = () => {
+  useEffect(() => {
+
+  }, []);
+
+  const scrollTo = (key: string) => {
+    const section = document.getElementById(key);
+    section?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  };
+
+  const toActiveBlock = (e: MenuItemEvent) => {
+    const { key } = e;
+    scrollTo(key as string);
+  };
+
+  return (
+    <>
+      <Affix offsetTop={0}>
+        <Header className={s.header}>
+          <div
+            className={s.logo}
+            onClick={() => scrollTo('main')}
+            onKeyUp={() => scrollTo('main')}
+            role="button"
+            tabIndex={0}
+          >Финансовый фестиваль
+          </div>
+          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['']} selectable={false}>
+            {Object.keys(BLOCKS).map(key => (
+              <Menu.Item
+                key={key}
+                active={false}
+                onClick={toActiveBlock}
+              >
+                {BLOCKS[key]}
+              </Menu.Item>
+            ))}
+          </Menu>
+          <Profile />
+        </Header>
+      </Affix>
+      <Content className={s.container}>
+        <Layout id="main" className={s.banner}>
+          <Title className={s.title}>Финансовый фестиваль {'\n'} для всей семьи</Title>
+          <Button className={s.mapButton} type="primary" onClick={() => scrollTo('map')}>
+            Карта
+          </Button>
+        </Layout>
+        <Layout id="map" className={s.map}>
+          <Title>Карта</Title>
+          <Map />
+        </Layout>
+      </Content>
+    </>
+  );
+};
 
 export default Main;

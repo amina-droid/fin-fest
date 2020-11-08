@@ -1,4 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/interactive-supports-focus */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+
 // @ts-nocheck
 import React from 'react';
 import { LinkProps, useHistory } from 'react-router-dom';
@@ -20,7 +23,7 @@ const SVGLink: React.FC<Props> = ({
     history.push(to);
   };
   return (
-    <a xlinkHref={to} className={className} onClick={handlerClick}>
+    <a xlinkHref={to} role="link" className={className} onClick={handlerClick}>
       {children}
     </a>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export const Badge: React.FC = () => (
   <svg x="558" y="246">

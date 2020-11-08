@@ -6,6 +6,7 @@ import { LoginOutlined } from '@ant-design/icons';
 
 import s from './Main.module.sass';
 import { Map } from '../../components/Map';
+import { LoginModal } from '../../components/Login';
 
 const { Link } = Anchor;
 
@@ -47,6 +48,10 @@ const Main = () => {
           <Map />
         </Layout>
       </Content>
+      <LoginModal
+        visible={authVisible}
+        onClose={() => setAuthVisible(false)}
+      />
     </>
   );
 };

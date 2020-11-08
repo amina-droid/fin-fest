@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export const Building: React.FC = () => (
   <svg x="459.48" y="275.69">

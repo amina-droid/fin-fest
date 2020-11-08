@@ -1,0 +1,54 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type AuthRedirect {
+    url: String!
+}
+
+type AuthResponse {
+    token: String!
+}
+
+type Mutation {
+    authVK(code: String!): AuthResponse!
+}
+
+type Query {
+    getVKOAuthRedirect: AuthRedirect!
+    users: [User!]!
+}
+
+type User {
+    _id: ObjectId!
+    email: String
+    name: UserName!
+    photos: [UserPhoto!]!
+    score: Float
+    social: UserSocial!
+}
+
+type UserName {
+    familyName: String!
+    givenName: String!
+}
+
+type UserPhoto {
+    url: String!
+}
+
+type UserSocial {
+    vkProvider: VKProvider!
+}
+
+type VKProvider {
+    id: String!
+    token: String!
+}
+
+
+"Mongo object id scalar type"
+scalar ObjectId

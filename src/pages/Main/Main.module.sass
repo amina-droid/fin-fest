@@ -14,15 +14,31 @@
     text-align: left
 
 
-.banner, .map, .reviews
+.banner, .map, .reviews, .about
     width: 100%
-    height: 80vh
-    padding: 80px
     align-items: flex-start
+    padding: var(--section-padding)
 
-.reviewsCarousel
-    display: block
-    max-width: 100%
+.banner, .map
+    height: 80vh
+
+.reviews
+    height: auto
+
+    &Carousel
+        display: block
+        max-width: 100%
+
+.about
+    &Content
+        width: 100%
+    &Image
+        padding: 20px
+
+        @media all and (max-width: 900px)
+            padding: 0
+    &Text
+        text-align: left
 
 .banner
     background: url(../../img/bg.png) 100% 100% no-repeat
@@ -30,7 +46,9 @@
     justify-content: center
 
 .map
+    background-color: white
     height: auto
+
     &Button
         font-size: 30px
         width: 140px

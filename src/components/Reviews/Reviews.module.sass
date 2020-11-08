@@ -1,11 +1,16 @@
-.cardContainer
-    max-width: 300px
+.card
+    &Container
+        max-width: 50vw
+        padding: 10px 0
 
-.contentStyle
-    height: 500px
-    line-height: 10px
-    text-align: center
+        @media all and (max-width: 900px)
+            max-width: 90vw
 
-.reviewer
-    max-width: 100px
-    max-height: 100px
+    &Body
+        width: 100%
+        display: flex
+        flex-direction: column
+        align-items: center
+
+    &Avatar
+        margin-bottom: 10px

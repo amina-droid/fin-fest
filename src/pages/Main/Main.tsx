@@ -7,6 +7,7 @@ import { LoginOutlined } from '@ant-design/icons';
 import s from './Main.module.sass';
 import { Map } from '../../components/Map';
 import Reviews from '../../components/Reviews/Reviews';
+import { LoginModal } from '../../components/Login';
 
 const { Header, Footer, Content } = Layout;
 const { Title } = Typography;
@@ -50,6 +51,10 @@ const Main = () => {
           <Reviews />
         </Layout>
       </Content>
+      <LoginModal
+        visible={authVisible}
+        onClose={() => setAuthVisible(false)}
+      />
     </>
   );
 };

@@ -1,44 +1,68 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-  Layout, Menu, Typography, Button, Affix, Modal,
+  Layout, Menu, Typography, Button, Affix,
 } from 'antd';
-import { LoginOutlined } from '@ant-design/icons';
 
 import s from './Main.module.sass';
 import { Map } from '../../components/Map';
+import { Profile } from '../../components/Profile';
 import Reviews from '../../components/Reviews/Reviews';
-import { LoginModal } from '../../components/Login';
 
 const { Header, Footer, Content } = Layout;
 const { Title } = Typography;
 
+type MenuItemProps = React.ComponentProps<typeof Menu['Item']>;
+type MenuItemEvent = Parameters<NonNullable<MenuItemProps['onClick']>>[0]
+
+const BLOCKS: { [key: string]: string } = {
+  main: 'Главная',
+  map: 'Карта',
+  partners: 'Партнеры',
+  reviews: 'Отзывы',
+  about: 'О проекте',
+};
+
 const Main = () => {
-  const [authVisible, setAuthVisible] = useState(false);
+  const scrollTo = (key: string) => {
+    const section = document.getElementById(key);
+    section?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  };
+
+  const toActiveBlock = (e: MenuItemEvent) => {
+    const { key } = e;
+    scrollTo(key as string);
+  };
+
   return (
     <>
       <Affix offsetTop={0}>
         <Header className={s.header}>
-          <div className={s.logo}>Финансовый фестиваль</div>
-          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['']}>
-            <Menu.Item key="1">О проекте</Menu.Item>
-            <Menu.Item key="2">Карта</Menu.Item>
-            <Menu.Item key="3">Партнеры</Menu.Item>
-            <Menu.Item key="4">Отзывы</Menu.Item>
+          <div
+            className={s.logo}
+            onClick={() => scrollTo('main')}
+            onKeyUp={() => scrollTo('main')}
+            role="button"
+            tabIndex={0}
+          >Финансовый фестиваль
+          </div>
+          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['']} selectable={false}>
+            {Object.keys(BLOCKS).map(key => (
+              <Menu.Item
+                key={key}
+                active={false}
+                onClick={toActiveBlock}
+              >
+                {BLOCKS[key]}
+              </Menu.Item>
+            ))}
           </Menu>
-          <Button
-            className={s.login}
-            type="primary"
-            icon={<LoginOutlined />}
-            onClick={() => setAuthVisible(true)}
-          >
-            Войти
-          </Button>
+          <Profile />
         </Header>
       </Affix>
       <Content className={s.container}>
         <Layout id="main" className={s.banner}>
           <Title className={s.title}>Финансовый фестиваль {'\n'} для всей семьи</Title>
-          <Button className={s.mapButton} type="primary">
+          <Button className={s.mapButton} type="primary" onClick={() => scrollTo('map')}>
             Карта
           </Button>
         </Layout>
@@ -51,10 +75,6 @@ const Main = () => {
           <Reviews className={s.reviewsCarousel} />
         </Layout>
       </Content>
-      <LoginModal
-        visible={authVisible}
-        onClose={() => setAuthVisible(false)}
-      />
     </>
   );
 };

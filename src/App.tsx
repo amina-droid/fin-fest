@@ -6,21 +6,19 @@ import 'antd/dist/antd.css';
 import './App.css';
 import Main from './pages/Main/Main';
 import { client } from './apollo';
-import { useAuth, AuthContext } from './context/auth';
+import { AuthContextProvider } from './context/auth';
 
 function App() {
-  const authContext = useAuth();
-
   return (
-    <ApolloProvider client={client}>
-      <AuthContext.Provider value={authContext}>
+    <AuthContextProvider>
+      <ApolloProvider client={client}>
         <BrowserRouter>
           <div className="App">
             <Route exact path="/" render={() => <Main />} />
           </div>
         </BrowserRouter>
-      </AuthContext.Provider>
-    </ApolloProvider>
+      </ApolloProvider>
+    </AuthContextProvider>
   );
 }
 

@@ -1,23 +1,40 @@
-import React from 'react';
-import { Carousel } from 'antd';
+import React, { FC } from 'react';
+import { Card, Carousel } from 'antd';
+import reviewer1 from '../../img/reviewer1.jpg';
 
 import s from './Reviews.module.sass';
 
-const Reviews = () => (
-  <Carousel autoplay>
-    <div>
-      <h3 className={s.contentStyle}>1</h3>
-    </div>
-    <div>
-      <h3 className={s.contentStyle}>2</h3>
-    </div>
-    <div>
-      <h3 className={s.contentStyle}>3</h3>
-    </div>
-    <div>
-      <h3 className={s.contentStyle}>4</h3>
-    </div>
-  </Carousel>
+const { Meta } = Card;
+
+type ReviewsProps = {
+    className: string;
+}
+
+const Reviews: FC<ReviewsProps> = ({ className }) => (
+  <div className={className}>
+    <Carousel autoplay dots={false}>
+      <div className={s.cardContainer}>
+        <Card hoverable cover={<img alt="reviewer" src={reviewer1} />} className={s.contentStyle}>
+          <Meta description="я говноед" />
+        </Card>
+      </div>
+      <div className={s.cardContainer}>
+        <Card hoverable cover={<img alt="reviewer" src={reviewer1} />} className={s.contentStyle}>
+          <Meta description="я говноед" />
+        </Card>
+      </div>
+      <div className={s.cardContainer}>
+        <Card hoverable cover={<img alt="reviewer" src={reviewer1} />} className={s.contentStyle}>
+          <Meta description="я говноед" />
+        </Card>
+      </div>
+      <div className={s.cardContainer}>
+        <Card hoverable cover={<img alt="reviewer" src={reviewer1} />} className={s.contentStyle}>
+          <Meta description="я говноед" />
+        </Card>
+      </div>
+    </Carousel>
+  </div>
 );
 
 export default Reviews;

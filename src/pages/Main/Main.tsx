@@ -48,7 +48,7 @@ const Main = () => {
         </Layout>
         <Layout id="reviews" className={s.reviews}>
           <Title>Отзывы</Title>
-          <Reviews />
+          <Reviews className={s.reviewsCarousel} />
         </Layout>
       </Content>
       <LoginModal

@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import {
-  Anchor, Layout, Menu, Typography, Button, Tooltip, Affix, Modal,
+  Layout, Menu, Typography, Button, Affix, Modal,
 } from 'antd';
 import { LoginOutlined } from '@ant-design/icons';
 
 import s from './Main.module.sass';
 import { Map } from '../../components/Map';
-
-const { Link } = Anchor;
+import Reviews from '../../components/Reviews/Reviews';
 
 const { Header, Footer, Content } = Layout;
 const { Title } = Typography;
@@ -45,6 +44,10 @@ const Main = () => {
         <Layout id="map" className={s.map}>
           <Title>Карта</Title>
           <Map />
+        </Layout>
+        <Layout id="reviews" className={s.reviews}>
+          <Title>Отзывы</Title>
+          <Reviews />
         </Layout>
       </Content>
     </>

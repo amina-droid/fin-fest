@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   Layout, Menu, Typography, Button, Affix,
 } from 'antd';
@@ -6,8 +6,9 @@ import {
 import s from './Main.module.sass';
 import { Map } from '../../components/Map';
 import { Profile } from '../../components/Profile';
+import Reviews from '../../components/Reviews/Reviews';
 
-const { Header, Content } = Layout;
+const { Header, Footer, Content } = Layout;
 const { Title } = Typography;
 
 type MenuItemProps = React.ComponentProps<typeof Menu['Item']>;
@@ -22,10 +23,6 @@ const BLOCKS: { [key: string]: string } = {
 };
 
 const Main = () => {
-  useEffect(() => {
-
-  }, []);
-
   const scrollTo = (key: string) => {
     const section = document.getElementById(key);
     section?.scrollIntoView({ block: 'center', behavior: 'smooth' });
@@ -72,6 +69,10 @@ const Main = () => {
         <Layout id="map" className={s.map}>
           <Title>Карта</Title>
           <Map />
+        </Layout>
+        <Layout id="reviews" className={s.reviews}>
+          <Title>Отзывы</Title>
+          <Reviews className={s.reviewsCarousel} />
         </Layout>
       </Content>
     </>

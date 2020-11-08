@@ -71,6 +71,7 @@ module.exports = {
             "specialLink": [ "hrefLeft", "hrefRight" ],
             "aspects": [ "invalidHref", "preferButton" ]
         }],
+        'linebreak-style': ["warn", "unix"]
     },
     settings:  {
         "react":  {

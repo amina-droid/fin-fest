@@ -1,26 +1,25 @@
 import React, { useContext, useState } from 'react';
-import { Button, Modal } from 'antd';
-import { useApolloClient, useLazyQuery, useMutation } from '@apollo/client';
+import {
+  Avatar, Badge, Button, Popover,
+} from 'antd';
+import { LoginOutlined } from '@ant-design/icons';
+import { useApolloClient, useMutation } from '@apollo/client';
 import {
   AUTH_VK, AuthVK, AuthVKVariables,
   GET_VK_OATH_REDIRECT_URL, GetVKOAuthRedirect,
 } from '../../apollo';
 import { AuthContext } from '../../context/auth';
 
-type Props = {
-  onClose: () => void;
-  visible: boolean;
-}
+import s from './Profile.module.sass';
 
-const LoginModal: React.FC<Props> = ({
-  onClose,
-  visible,
-}) => {
+const Profile: React.FC = () => {
   const [authLoading, setAuthLoading] = useState(false);
   const {
-    token, user, login, logout,
-  } = useContext<AuthContext>(AuthContext);
-
+    token,
+    login,
+    logout,
+    user,
+  } = useContext(AuthContext);
   const [
     authVK,
   ] = useMutation<AuthVK, AuthVKVariables>(AUTH_VK);
@@ -29,7 +28,6 @@ const LoginModal: React.FC<Props> = ({
   const vkSignHandler = async (e: any) => {
     e.preventDefault();
     setAuthLoading(true);
-    console.log('ti pidoe');
 
     async function authHandler(this: Window, event: MessageEvent) {
       // 'this' = children window
@@ -50,11 +48,11 @@ const LoginModal: React.FC<Props> = ({
         const { token: responseToken } = data.authVK;
         login(responseToken);
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.error(error);
         throw error;
       } finally {
         setAuthLoading(false);
-        onClose();
       }
     }
 
@@ -64,28 +62,52 @@ const LoginModal: React.FC<Props> = ({
       });
 
       const { url } = data.getVKOAuthRedirect;
+      // eslint-disable-next-line security/detect-non-literal-fs-filename
       const loginWindow = window.open(url, 'OAuth')!;
 
       window.addEventListener('message', authHandler.bind(loginWindow));
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error(error);
       throw error;
     }
   };
 
+  if (!token && !user) {
+    return (
+      <Button
+        type="primary"
+        icon={<LoginOutlined />}
+        onClick={vkSignHandler}
+        loading={authLoading}
+      >
+        Войти через VK
+      </Button>
+    );
+  }
+
+  const scores = user?.score || '0';
+  const content = (
+    <div>
+      Мои баллы: {scores}
+      <Button type="text" block danger onClick={logout}>Выйти</Button>
+    </div>
+  );
+
   return (
-    <Modal
-      visible={visible}
-      title="Войти через соц. сети"
-      footer={[
-        <Button key="back" onClick={onClose}>
-          Закрыть
-        </Button>,
-      ]}
+    <Popover
+      content={content}
+      title={`${user?.name.givenName} ${user?.name.familyName}`}
+      trigger="hover"
     >
-      <Button onClick={vkSignHandler}>Войти через VK</Button>
-    </Modal>
+      <div className={s.profile}>
+        <span className={s.profileName}>{user?.name.givenName}</span>
+        <Badge count={scores} size="small">
+          <Avatar src={user?.photos[0].url} />
+        </Badge>
+      </div>
+    </Popover>
   );
 };
 
-export default LoginModal;
+export default Profile;

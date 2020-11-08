@@ -5,7 +5,7 @@ export * from './queries';
 export * from './mutations';
 
 const GRAPHQL_URL = process.env.NODE_ENV === 'production'
-  ? 'http://api.fin-fest.ru/graphql'
+  ? 'http://api.finfest-tyumen.ru/graphql'
   : 'https://fin-fest.loca.lt/graphql';
 
 const defaultLink = new HttpLink({

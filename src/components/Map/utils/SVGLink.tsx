@@ -3,9 +3,10 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 
 // @ts-nocheck
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { LinkProps, useHistory } from 'react-router-dom';
 import { Button, Modal } from 'antd';
+import { AuthContext } from '../../../context/auth';
 
 type Props = LinkProps & {
   className?: string;
@@ -14,6 +15,7 @@ type Props = LinkProps & {
 const SVGLink: React.FC<Props> = ({
   children, to, className, onClick,
 }) => {
+  const { token } = useContext(AuthContext);
   const [visible, setVisible] = useState(false);
   const history = useHistory();
 
@@ -22,8 +24,12 @@ const SVGLink: React.FC<Props> = ({
     if (onClick) {
       onClick(e);
     }
-    setVisible(true);
-    // history.push(to);
+
+    if (!token) {
+      setVisible(true);
+      return;
+    }
+    history.push(to);
   };
   return (
     <>
@@ -39,7 +45,8 @@ const SVGLink: React.FC<Props> = ({
           </Button>,
         ]}
       >
-        Раздел в работе, но скоро будет доступен!
+        <p>Данный раздел недоступен</p>
+        <p>Возможно вы сможете в него войти если авторизуетесь</p>
       </Modal>
     </>
   );

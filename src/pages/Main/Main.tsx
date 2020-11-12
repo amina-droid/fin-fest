@@ -9,12 +9,10 @@ import Reviews from '../../components/Reviews/Reviews';
 import about from '../../img/about.jpg';
 
 import s from './Main.module.sass';
+import Header, { scrollTo } from '../../components/Header/Header';
 
-const { Header, Footer, Content } = Layout;
+const { Footer, Content } = Layout;
 const { Title, Paragraph, Text } = Typography;
-
-type MenuItemProps = React.ComponentProps<typeof Menu['Item']>;
-type MenuItemEvent = Parameters<NonNullable<MenuItemProps['onClick']>>[0]
 
 const BLOCKS: { [key: string]: string } = {
   main: 'Главная',
@@ -24,42 +22,9 @@ const BLOCKS: { [key: string]: string } = {
   reviews: 'Отзывы',
 };
 
-const scrollTo = (key: string) => {
-  const section = document.getElementById(key);
-  section?.scrollIntoView({ block: 'center', behavior: 'smooth' });
-};
-
-const toActiveBlock = (e: MenuItemEvent) => {
-  const { key } = e;
-  scrollTo(key as string);
-};
-
 const Main = () => (
   <>
-    <Affix offsetTop={0}>
-      <Header className={s.header}>
-        <div
-          className={s.logo}
-          onClick={() => scrollTo('main')}
-          onKeyUp={() => scrollTo('main')}
-          role="button"
-          tabIndex={0}
-        >Финансовый фестиваль
-        </div>
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['']} selectable={false}>
-          {Object.keys(BLOCKS).map(key => (
-            <Menu.Item
-              key={key}
-              active={false}
-              onClick={toActiveBlock}
-            >
-              {BLOCKS[key]}
-            </Menu.Item>
-          ))}
-        </Menu>
-        <Profile />
-      </Header>
-    </Affix>
+    <Header navigation={BLOCKS} />
     <Content className={s.container}>
       <Layout id="main" className={s.banner}>
         <Title className={s.title}>Финансовый фестиваль {'\n'} для всей семьи</Title>

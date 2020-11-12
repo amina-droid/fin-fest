@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Form, Input } from 'antd';
 
 type EditorProps = {
@@ -12,6 +12,12 @@ const Editor: React.FC<EditorProps> = ({
   const handleChange = (e: any) => {
     setMessage(e.target.value);
   };
+
+  useEffect(() => {
+    if (submitting) {
+      setMessage('');
+    }
+  }, [submitting]);
 
   const handleSubmit = () => {
     onSubmit(message);

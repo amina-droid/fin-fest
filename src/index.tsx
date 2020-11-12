@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
+import './index.sass';
 // @ts-ignore
 import localization from 'moment/locale/ru';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
-import './index.sass';
 
 moment.updateLocale('ru', localization);
 ReactDOM.render(

@@ -38,14 +38,12 @@ export const AuthContext = React.createContext<State>({
 });
 
 export const AuthContextProvider: React.FC = ({ children }) => {
-  const [token, setToken] = useState<string | null>(null);
+  const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const savedToken = localStorage.getItem('token');
-    if (savedToken) {
-      setToken(savedToken);
-      setUser(jwtDecode(savedToken) as User);
+    if (token) {
+      setUser(jwtDecode(token) as User);
     }
   }, []);
 

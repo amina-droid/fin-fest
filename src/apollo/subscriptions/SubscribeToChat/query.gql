@@ -1,0 +1,13 @@
+subscription SubscribeToChat($topic: String!) {
+    subscribeToChat(topic: $topic) {
+        author {
+            givenName,
+            familyName
+        }
+        avatar {
+            url
+        }
+        message
+        date
+    }
+}

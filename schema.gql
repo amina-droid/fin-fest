@@ -3,6 +3,7 @@
 schema {
     query: Query
     mutation: Mutation
+    subscription: Subscription
 }
 
 type AuthRedirect {
@@ -13,13 +14,25 @@ type AuthResponse {
     token: String!
 }
 
+type Message {
+    author: UserName!
+    avatar: UserPhoto
+    date: DateTime!
+    message: String!
+}
+
 type Mutation {
     authVK(code: String!): AuthResponse!
+    sendChatMessage(message: String!, topic: String!): Boolean!
 }
 
 type Query {
     getVKOAuthRedirect: AuthRedirect!
     users: [User!]!
+}
+
+type Subscription {
+    subscribeToChat(topic: String!): Message!
 }
 
 type User {
@@ -52,3 +65,6 @@ type VKProvider {
 
 "Mongo object id scalar type"
 scalar ObjectId
+
+"The javascript `Date` as string. Type represents date and time as the ISO Date string."
+scalar DateTime

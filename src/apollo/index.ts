@@ -1,18 +1,45 @@
-import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
+import {
+  ApolloClient, HttpLink, InMemoryCache, split,
+} from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import { WebSocketLink } from '@apollo/client/link/ws';
+import { getMainDefinition } from '@apollo/client/utilities';
 
 export * from './queries';
 export * from './mutations';
+export * from './subscriptions';
 
 const GRAPHQL_URL = process.env.NODE_ENV === 'production'
   ? 'http://api.finfest-tyumen.ru/graphql'
   : 'https://fin-fest.loca.lt/graphql';
 
-const defaultLink = new HttpLink({
+const WS_GRAPHQL_URL = process.env.NODE_ENV === 'production'
+  ? 'ws://api.finfest-tyumen.ru/graphql'
+  : 'wss://fin-fest.loca.lt/graphql';
+
+const wsLink = new WebSocketLink({
+  uri: WS_GRAPHQL_URL,
+  options: {
+    reconnect: true,
+  },
+});
+
+const httpLink = new HttpLink({
   uri: GRAPHQL_URL,
   credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
-  fetch,
 });
+
+const splitLink = split(
+  ({ query }) => {
+    const definition = getMainDefinition(query);
+    return (
+      definition.kind === 'OperationDefinition'
+      && definition.operation === 'subscription'
+    );
+  },
+  wsLink,
+  httpLink,
+);
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
@@ -26,7 +53,8 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
-const link = authLink.concat(defaultLink);
+const link = authLink
+  .concat(splitLink);
 
 export const client = new ApolloClient({
   link,

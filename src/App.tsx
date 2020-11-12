@@ -2,11 +2,12 @@ import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/client';
 
-import 'antd/dist/antd.css';
-import './App.css';
 import Main from './pages/Main/Main';
 import { client } from './apollo';
 import { AuthContextProvider } from './context/auth';
+
+import 'antd/dist/antd.css';
+import './App.css';
 
 function App() {
   return (

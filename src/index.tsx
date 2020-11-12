@@ -1,9 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.sass';
+import moment from 'moment';
+// @ts-ignore
+import localization from 'moment/locale/ru';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import './index.sass';
+
+moment.updateLocale('ru', localization);
 ReactDOM.render(
   <React.StrictMode>
     <App />

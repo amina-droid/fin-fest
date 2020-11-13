@@ -104,32 +104,16 @@ const Lector = () => (
             <Card className={s.card}>
               <div className={s.cardBody}>
                 <ReactPlayer
-                  className={s['stream-video']}
+                  height="50vh"
                   controls
-                  url="https://www.youtube.com/watch?v=Dzaxv97nhVQ&feature=youtu.be"
+                  url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                 />
               </div>
             </Card>
-            <Chat topic="lector" />
           </div>
         </Col>
         <Col span={8} xs={20} sm={20} md={8}>
-          <Timeline mode="left">
-            <Timeline.Item label="2020.09.01">
-              <p>Личные инвестиции: с чего начать?</p>
-              <p>Ян Арт</p>
-            </Timeline.Item>
-            <Timeline.Item label="2020.09.01">
-              <p>Собственный бизнес: первые шаги</p>
-              <p>Максим Бугаев</p>
-            </Timeline.Item>
-            <Timeline.Item label="2020.09.01">
-              <p>Деятельность ОООП «Союз защиты прав потребителей финансовых
-                услуг» в сфере защиты финансовых интересов граждан.
-              </p>
-              <p>Игорь Костиков</p>
-            </Timeline.Item>
-          </Timeline>
+          <Chat topic="lector" />
         </Col>
       </Row>
 

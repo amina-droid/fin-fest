@@ -37,10 +37,10 @@ const Profile: React.FC = () => {
 
       // eslint-disable-next-line react/no-this-in-sfc
       this.close();
-      const { code } = event.data.payload;
       window.removeEventListener('message', authHandler);
 
       try {
+        const { code } = event.data.payload;
         const { data, errors } = await authVK({ variables: { code } });
 
         if (errors || !data) return;

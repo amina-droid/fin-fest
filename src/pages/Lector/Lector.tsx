@@ -8,6 +8,7 @@ import Header from '../../components/Header/Header';
 import s from './Lector.module.sass';
 import { Chat } from '../../components/Chat';
 import { firstArea, lectors, secondArea } from './dictionaries';
+import { Footer } from '../../components/Footer';
 
 const { Title } = Typography;
 
@@ -114,6 +115,7 @@ const Lector = () => (
         </Tabs.TabPane>
       </Tabs>
     </Layout>
+    <Footer />
   </Layout>
 );
 

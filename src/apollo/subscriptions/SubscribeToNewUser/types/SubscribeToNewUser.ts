@@ -4,18 +4,9 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: AuthVK
+// GraphQL subscription operation: SubscribeToNewUser
 // ====================================================
 
-export interface AuthVK_authVK {
-  __typename: "AuthResponse";
-  token: string;
-}
-
-export interface AuthVK {
-  authVK: AuthVK_authVK;
-}
-
-export interface AuthVKVariables {
-  code: string;
+export interface SubscribeToNewUser {
+  newUserRegistered: boolean;
 }

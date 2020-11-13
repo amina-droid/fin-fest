@@ -1,0 +1,9 @@
+query GetReviews {
+    reviews {
+        _id
+        author
+        avatar
+        message
+        subtitle
+    }
+}

@@ -6,14 +6,8 @@ import reviewer1 from '../../img/reviewer1.jpg';
 
 import s from './Reviews.module.sass';
 
-const { Meta } = Card;
-
-type ReviewsProps = {
-    className: string;
-}
-
-const Reviews: FC<ReviewsProps> = ({ className }) => (
-  <div className={className}>
+const Reviews: FC = () => (
+  <div className={s.carousel}>
     <Carousel autoplay dots={false}>
       <div className={s.cardContainer}>
         <Card
@@ -23,7 +17,8 @@ const Reviews: FC<ReviewsProps> = ({ className }) => (
             <Avatar src={reviewer1} size={100} className={s.cardAvatar} />
             <Typography.Title level={5}>Jlby bp jnjdsjsda</Typography.Title>
             <Typography.Text>
-              Таким образом постоянное информационно-пропагандистское обеспечение нашей деятельности
+              Таким образом постоянное информационно-пропагандистское
+              обеспечение нашей деятельности
               обеспечивает широкому кругу (специалистов)
               участие в формировании системы обучения кадров,
               соответствует насущным потребностям. Разнообразный
@@ -42,7 +37,8 @@ const Reviews: FC<ReviewsProps> = ({ className }) => (
             <Avatar src={reviewer1} size={100} className={s.cardAvatar} />
             <Typography.Title level={5}>Jlby bp jnjdsjsda</Typography.Title>
             <Typography.Text>
-              Таким образом постоянное информационно-пропагандистское обеспечение нашей деятельности
+              Таким образом постоянное информационно-пропагандистское обеспечение
+              нашей деятельности
               обеспечивает широкому кругу (специалистов)
               участие в формировании системы обучения кадров,
               соответствует насущным потребностям. Разнообразный

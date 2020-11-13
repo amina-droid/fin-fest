@@ -1,25 +1,26 @@
 import React from 'react';
 import {
-  Layout, Menu, Typography, Button, Affix, Grid, Row, Col, Image,
+  Layout, Typography, Button, Row, Col, Image,
 } from 'antd';
 
 import { Map } from '../../components/Map';
-import { Profile } from '../../components/Profile';
 import Reviews from '../../components/Reviews/Reviews';
 import about from '../../img/about.jpg';
+import partnersDictionary from './partners/dictionary';
 
 import s from './Main.module.sass';
 import Header, { scrollTo } from '../../components/Header/Header';
+import { Footer } from '../../components/Footer';
 
-const { Footer, Content } = Layout;
+const { Content } = Layout;
 const { Title, Paragraph, Text } = Typography;
 
 const BLOCKS: { [key: string]: string } = {
   main: 'Главная',
   about: 'О фестивале',
   map: 'Карта',
-  // partners: 'Партнеры',
   reviews: 'Отзывы',
+  partners: 'Партнеры',
 };
 
 const Main = () => (
@@ -27,10 +28,33 @@ const Main = () => (
     <Header navigation={BLOCKS} />
     <Content className={s.container}>
       <Layout id="main" className={s.banner}>
-        <Title className={s.title}>Финансовый фестиваль {'\n'} для всей семьи</Title>
-        <Button className={s.mapButton} type="primary" onClick={() => scrollTo('map')}>
-          Карта
-        </Button>
+        <Row gutter={[30, 30]} className={s.bannerContent}>
+          <Col span={12} xs={24} sm={24} md={12}>
+            <Title className={s.title}>Финансовый фестиваль для всей семьи</Title>
+            <Paragraph className={s.subtitle}>Финансовая грамотность - это интересно!</Paragraph>
+            <Button className={s.bannerButton} size="large" type="primary" onClick={() => scrollTo('map')}>
+              Карта
+            </Button>
+          </Col>
+          <Col span={12} xs={24} sm={24} md={12}>
+            <div className={s.bannerCard}>
+              <Paragraph className={s.bannerText}>
+                Единственное в России мероприятие по повышению
+                финансовой грамотности в формате EDUTAINMENT
+              </Paragraph>
+              <Paragraph className={s.bannerText}>
+                Вас ждут:
+                <ul>
+                  <li>Креативные форматы</li>
+                  <li>Лучшие эксперты</li>
+                </ul>
+              </Paragraph>
+              <Paragraph className={s.bannerText}>
+                18 ноября в городе Тюмень!
+              </Paragraph>
+            </div>
+          </Col>
+        </Row>
       </Layout>
       <Layout id="about" className={s.about}>
         <Title>О фестивале</Title>
@@ -110,7 +134,28 @@ const Main = () => (
         <Title>Отзывы</Title>
         <Reviews className={s.reviewsCarousel} />
       </Layout>
+      <Layout id="partners" className={s.partners}>
+        <Title>Партнеры</Title>
+        <div className={s.partnersContainer}>
+          {partnersDictionary.map(partner => (
+            <a
+              className={s.partnersImgLink}
+              href={partner.link || ''}
+              target="_blank"
+              rel="noreferrer"
+              key={partner.link}
+            >
+              <img
+                alt={partner.link || ''}
+                src={partner.img}
+                className={s.partnersImg}
+              />
+            </a>
+          ))}
+        </div>
+      </Layout>
     </Content>
+    <Footer />
   </>
 );
 

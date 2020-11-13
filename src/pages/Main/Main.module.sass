@@ -1,31 +1,36 @@
-
 .title
     color: white!important
-    font-size: 50px!important
+    font-size: 40px!important
     white-space: pre-line
     text-align: left
 
+.subtitle
+    color: white!important
+    font-size: 30px!important
+    white-space: pre-line
+    text-align: left
 
-.banner, .map, .reviews, .about
+.banner, .map, .reviews, .about, .partners
     width: 100%
     align-items: flex-start
     padding: var(--section-padding)
 
 .banner, .map
-    height: 80vh
+    min-height: 80vh
 
 .reviews
     height: auto
 
     &Carousel
-        display: block
-        max-width: 100%
+        justify-content: center
+        align-items: center
 
 .about
     &Content
         width: 100%
     &Image
         padding: 20px
+        margin-bottom: 20px
 
         @media all and (max-width: 900px)
             padding: 0
@@ -37,11 +42,40 @@
     background-size: cover
     justify-content: center
 
+    &Card
+        background-color: rgba(40, 44, 52, .1)
+        border-radius: 10px
+        padding: 15px
+
+    &Text
+        color: white!important
+        font-size: 20px
+
+    &Content
+        width: 100%
+
+    &Button
+        width: 50%
+
 .map
     background-color: white
     height: auto
 
-    &Button
-        font-size: 30px
-        width: 140px
-        height: 60px
+.partners
+    background-color: white
+    height: auto
+
+    &Img
+        max-height: 150px
+        max-width: 150px
+        object-fit: cover
+
+        &Link
+            display: flex
+            justify-content: center
+            align-items: center
+
+    &Container
+        display: flex
+        flex-wrap: wrap
+        justify-content: space-between

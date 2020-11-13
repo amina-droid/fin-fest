@@ -56,6 +56,7 @@ const Main = () => (
           </Col>
         </Row>
       </Layout>
+      <Layout />
       <Layout id="about" className={s.about}>
         <Title>О фестивале</Title>
         <Row gutter={[16, 0]} className={s.aboutContent}>

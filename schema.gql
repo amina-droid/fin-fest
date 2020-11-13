@@ -28,20 +28,21 @@ type Mutation {
 
 type Query {
     getVKOAuthRedirect: AuthRedirect!
-    users: [User!]!
+    reviews: [Review!]!
+    usersCount: Float!
+}
+
+type Review {
+    _id: ObjectId!
+    author: String!
+    avatar: String!
+    message: String!
+    subtitle: String!
 }
 
 type Subscription {
+    newUserRegistered: Boolean!
     subscribeToChat(topic: String!): Message!
-}
-
-type User {
-    _id: ObjectId!
-    email: String
-    name: UserName!
-    photos: [UserPhoto!]!
-    score: Float
-    social: UserSocial!
 }
 
 type UserName {
@@ -51,15 +52,6 @@ type UserName {
 
 type UserPhoto {
     url: String!
-}
-
-type UserSocial {
-    vkProvider: VKProvider!
-}
-
-type VKProvider {
-    id: String!
-    token: String!
 }
 
 

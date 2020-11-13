@@ -24,7 +24,7 @@ const Lector = () => (
     <Layout id="program" className={s.section}>
       <Title level={2}>Программа</Title>
       <Row gutter={[16, 0]} className={s.aboutContent}>
-        <Col span={12} xs={20} sm={20} md={12}>
+        <Col span={12} xs={24} sm={24} md={12}>
           <div className={s.carousel}>
             <Carousel dots={{ className: s.carouselDots }} autoplay dotPosition="left">
               {lectors.map(lector => (
@@ -43,7 +43,7 @@ const Lector = () => (
             </Carousel>
           </div>
         </Col>
-        <Col span={12} xs={20} sm={20} md={12}>
+        <Col span={12} xs={24} sm={24} md={12}>
           <Tabs defaultActiveKey="1" centered>
             <Tabs.TabPane tab="Площадка 1" key="1">
               <Timeline mode="alternate">
@@ -75,7 +75,7 @@ const Lector = () => (
       <Tabs defaultActiveKey="1">
         <Tabs.TabPane tab="Площадка 1" key="1">
           <Row gutter={[16, 0]} className={s.aboutContent}>
-            <Col span={16} xs={20} sm={20} md={16}>
+            <Col span={16} xs={24} sm={24} md={16}>
               <div className={s.carousel}>
                 <Card className={s.card}>
                   <div className={s.cardBody}>
@@ -88,14 +88,14 @@ const Lector = () => (
                 </Card>
               </div>
             </Col>
-            <Col span={8} xs={20} sm={20} md={8}>
+            <Col span={8} xs={24} sm={24} md={8}>
               <Chat topic="lector/1" />
             </Col>
           </Row>
         </Tabs.TabPane>
         <Tabs.TabPane tab="Площадка 2" key="2">
           <Row gutter={[16, 0]} className={s.aboutContent}>
-            <Col span={16} xs={20} sm={20} md={16}>
+            <Col span={16} xs={24} sm={24} md={16}>
               <div className={s.carousel}>
                 <Card className={s.card}>
                   <div className={s.cardBody}>
@@ -108,7 +108,7 @@ const Lector = () => (
                 </Card>
               </div>
             </Col>
-            <Col span={8} xs={20} sm={20} md={8}>
+            <Col span={8} xs={24} sm={24} md={8}>
               <Chat topic="lector/2" />
             </Col>
           </Row>

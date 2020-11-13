@@ -37,7 +37,7 @@ const Main = () => {
   });
 
   useEffect(() => {
-    setUsersCount(usersCount + (data?.usersCount || 0));
+    setUsersCount(prevCount => prevCount + (data?.usersCount || 0));
   }, [data]);
 
   return (
@@ -83,10 +83,10 @@ const Main = () => {
         <Layout id="about" className={s.about}>
           <Title>О фестивале</Title>
           <Row gutter={[16, 0]} className={s.aboutContent}>
-            <Col span={8} xs={20} sm={20} md={8}>
+            <Col span={8} xs={24} sm={24} md={8}>
               <Image src={about} className={s.aboutImage} />
             </Col>
-            <Col span={16} xs={20} sm={20} md={16}>
+            <Col span={16} xs={24} sm={24} md={16}>
               <Typography className={s.aboutText}>
                 <Title level={3}>
                   Что такое Финансовый фестиваль для всей семьи и для чего он нужен?

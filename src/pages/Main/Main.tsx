@@ -132,7 +132,7 @@ const Main = () => (
       </Layout>
       <Layout id="reviews" className={s.reviews}>
         <Title>Отзывы</Title>
-        <Reviews className={s.reviewsCarousel} />
+        <Reviews />
       </Layout>
       <Layout id="partners" className={s.partners}>
         <Title>Партнеры</Title>

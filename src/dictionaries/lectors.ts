@@ -26,6 +26,10 @@ import babakinImg from './img/Babakin.jpg';
 import rylovaImg from './img/Rylova.jpg';
 import drachukImg from './img/Drachuk.jpg';
 import zhuravskayaImg from './img/Zhuravskaya.jpg';
+import sokolovaImg from './img/Sokolova.jpg';
+import almukhametovImg from './img/Almukhametov.jpg';
+import lyubanenkoImg from './img/Lyubanenko.jpg';
+import litominImg from './img/Litomin.jpg';
 
 type Lector = {
   name: string;
@@ -205,4 +209,28 @@ export const zhuravskaya: Lector = {
   avatar: zhuravskayaImg,
   name: 'Лариса Журавская',
   description: 'Координатор и преподаватель Центра Духовного Развития г.Тюмени',
+};
+
+export const sokolova: Lector = {
+  avatar: sokolovaImg,
+  name: 'Надежда Соколова',
+  description: 'Заместитель начальника отдела по защите прав потребителей Управления Роспотребнадзора РФ по Тюменской области',
+};
+
+export const almukhametov: Lector = {
+  avatar: almukhametovImg,
+  name: 'Альберт Альмухаметов',
+  description: 'Юрист, член Общественного совета при Управлении Федеральной службы судебных приставов России по Тюменской области.',
+};
+
+export const lyubanenko: Lector = {
+  avatar: lyubanenkoImg,
+  name: 'Андрей Любаненко',
+  description: 'Доцент кафедры предпринимательства ТюмГУ, к.э.н.',
+};
+
+export const litomin: Lector = {
+  avatar: litominImg,
+  name: 'Игорь Литомин',
+  description: 'Заслуженный общественный деятель Тюменской области, член Общественного Совета Тюменской областной Думы, заместитель председателя Общественного Совета города Тюмени',
 };

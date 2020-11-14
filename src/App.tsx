@@ -12,6 +12,7 @@ import Lector from './pages/Lector/Lector';
 import Gamezone from './pages/Gamezone/Gamezone';
 import Sandbox from './pages/Sandbox/Sandbox';
 import MasterClasses from './pages/MasterClasses/MasterClasses';
+import Consultations from './pages/Consultations/Consultations';
 
 const ProtectedRoute: FC<RouteProps> = ({ component: Component, ...rest }) => {
   const { token } = useContext(AuthContext);
@@ -38,6 +39,7 @@ function App() {
             <ProtectedRoute exact path="/gamezone" component={Gamezone} />
             <ProtectedRoute exact path="/master-classes" component={MasterClasses} />
             <ProtectedRoute exact path="/sandbox" component={Sandbox} />
+            <ProtectedRoute exact path="/consultations" component={Consultations} />
           </div>
         </BrowserRouter>
       </ApolloProvider>

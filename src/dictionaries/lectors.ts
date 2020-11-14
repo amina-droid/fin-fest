@@ -1,5 +1,6 @@
 import afanasyevaImg from './img/Afanasyeva.jpg';
 import artImg from './img/Art.jpg';
+import aitovImg from './img/Aitov.jpg';
 import bugaevImg from './img/Bugaev.jpg';
 import melzerSImg from './img/MelzerS.jpg';
 import meltzerMImg from './img/MeltzerM.jpg';
@@ -12,6 +13,12 @@ import zhuravlevaImg from './img/Zhuravleva.jpg';
 import darovskikhImg from './img/Darovskikh.jpg';
 import zheurovaImg from './img/Zheurova.jpg';
 import kryukovaImg from './img/Kryukova.jpg';
+import gostyukhinaImg from './img/Gostyukhina.jpg';
+import ogorodnikovaImg from './img/Ogorodnikova.jpg';
+import ilyinaImg from './img/Ilyina.jpg';
+import kochnevImg from './img/Kochnev.jpg';
+import dudarevImg from './img/Dudarev.jpg';
+import proninaImg from './img/Pronina.jpg';
 
 type Lector = {
   name: string;
@@ -21,8 +28,14 @@ type Lector = {
 
 export const afanasyeva: Lector = {
   avatar: afanasyevaImg,
-  name: '',
-  description: '',
+  name: 'Юлия Афанасьева',
+  description: 'Руководитель территориального подразделения универсальной сети в Тюменской области Агенство, г. Ишим',
+};
+
+export const aitov: Lector = {
+  avatar: aitovImg,
+  name: 'Тимур Аитов',
+  description: 'Директор по международному развитию Ассоциации "Финансовые инновации", заместитель председателя Комиссии по цифровым финансовым технологиям Совета Торгово-промышленной палаты Российской Федерации, руководитель Центра компетенций "Цифровизация финансовых технологий" Фонда развития цифровой экономики',
 };
 
 export const art: Lector = {
@@ -41,6 +54,36 @@ export const darovskikh: Lector = {
   avatar: darovskikhImg,
   name: 'Юрий Даровских',
   description: 'Директор АНО « Западно-Сибирский региональный Центр медиации и права», кандидат юридических наук, почетный работник высшего профессионального образования РФ, тренер-медиатор.',
+};
+
+export const dudarev: Lector = {
+  avatar: dudarevImg,
+  name: 'Антон Дударев',
+  description: 'Частный инвестор. Instagram-блоггер в сфере финансов. Финансовый волонтер ЦБ РФ',
+};
+
+export const pronina: Lector = {
+  avatar: proninaImg,
+  name: 'Светлана Пронина',
+  description: 'Индивидуальный предприниматель с 20-летним стажем, экономист, психолог, тьютер. Сертифицированный консультант по финансовой грамотности проекта Минфина РФ',
+};
+
+export const gostyukhina: Lector = {
+  avatar: gostyukhinaImg,
+  name: 'Алена Гостюхина',
+  description: 'Предприниматель более 7 лет. Амбассадор Европейской Юридической Службы, инвестор. Организатор проведения в Тюмени ежегодной акции «Всероссийский правовой диктант». Ученица Роберта Кийосаки и основатель в Тюмени клуба финансовой грамотности «Денежный поток».',
+};
+
+export const ilyina: Lector = {
+  avatar: ilyinaImg,
+  name: 'Екатерина Ильина',
+  description: 'Директор АНО ДПО “Тюменский межрегиональный центр обучения”',
+};
+
+export const kochnev: Lector = {
+  avatar: kochnevImg,
+  name: 'Владимир Кочнев',
+  description: 'Консультант психолог, тренер персонала, игропрактик. Предприниматель со стажем более 10 лет. Кризис управляющий',
 };
 
 export const kostikov: Lector = {
@@ -67,10 +110,22 @@ export const smelzer: Lector = {
   description: 'К.г.н., исполнительный директор ТРО ОООП "ФинПотребСоюз" , руководитель консультационно-методического центра финансовой грамотности в Тюменской области проекта Минфин РФ.',
 };
 
+export const nikitenko: Lector = {
+  avatar: '',
+  name: 'Юлия Никитенко',
+  description: 'Экономист. Частная практика по финансовому консалтингу.',
+};
+
 export const ogibalov: Lector = {
   avatar: ogibalovImg,
   name: 'Алексей Огибалов',
   description: 'Финансовый советник. Страховая компания "Альянс ЖИЗНЬ"',
+};
+
+export const ogorodnikova: Lector = {
+  avatar: ogorodnikovaImg,
+  name: 'Ирина Огородникова',
+  description: 'К. с. н, доцент кафедры экономики и финансов Финансово-экономического института Тюменского государственного университета Региональный координатор проекта «Содействие повышению уровня финансовой грамотности населения и развитию финансового образования в Российской Федерации»',
 };
 
 export const pokrovskaya: Lector = {

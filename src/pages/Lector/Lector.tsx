@@ -28,13 +28,13 @@ const Lector = () => (
           <div className={s.carousel}>
             <Carousel dots={{ className: s.carouselDots }} autoplay dotPosition="left">
               {lectors.map(lector => (
-                <div className={s.cardContainer} key={lector.title}>
+                <div className={s.cardContainer} key={lector.name}>
                   <Card className={s.card}>
                     <div className={s.cardBody}>
                       <Avatar src={lector.avatar} size={300} className={s.cardAvatar} />
-                      <Typography.Title level={5}>{lector.title}</Typography.Title>
+                      <Typography.Title level={5}>{lector.name}</Typography.Title>
                       <Typography.Text>
-                        {lector.text}
+                        {lector.description}
                       </Typography.Text>
                     </div>
                   </Card>

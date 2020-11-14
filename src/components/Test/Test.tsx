@@ -15,10 +15,10 @@ const Test: React.FC<Props> = ({ page }) => {
   const [getQuestions, { data }] = useLazyQuery<GetQuestions>(GET_QUESTIONS);
 
   useEffect(() => {
-    if (!disabled) {
+    if (!disabled && !data) {
       getQuestions();
     }
-  }, [disabled, getQuestions]);
+  }, [disabled, data]);
 
   const openModal = () => setOpen(true);
   const closeModal = () => setOpen(false);

@@ -20,7 +20,7 @@ const toActiveBlock = (e: MenuItemEvent) => {
 };
 
 type HeaderProps = {
-    navigation: {
+    navigation?: {
         [key: string]: string;
     }
 }
@@ -47,7 +47,7 @@ const Header: FC<HeaderProps> = ({ navigation }) => {
         >Финансовый фестиваль
         </div>
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['']} selectable={false}>
-          {Object.keys(navigation).map(key => (
+          {navigation && Object.keys(navigation).map(key => (
             <Menu.Item
               key={key}
               active={false}

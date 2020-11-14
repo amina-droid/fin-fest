@@ -19,6 +19,11 @@ import ilyinaImg from './img/Ilyina.jpg';
 import kochnevImg from './img/Kochnev.jpg';
 import dudarevImg from './img/Dudarev.jpg';
 import proninaImg from './img/Pronina.jpg';
+import pavlushinaImg from './img/Pavlushina.jpg';
+import serkovaImg from './img/Serkova.jpg';
+import vokhmyaninaImg from './img/Vokhmyanina.jpg';
+import babakinImg from './img/Babakin.jpg';
+import rylovaImg from './img/Rylova.jpg';
 
 type Lector = {
   name: string;
@@ -156,4 +161,34 @@ export const zheurova: Lector = {
   avatar: zheurovaImg,
   name: 'Екатерина Жеурова',
   description: 'Эксперт Национального центра финансовой грамотности. Консультант-методист по финансовой грамотности Проекта Минфина России. Представитель ФЭИ ТюмГУ по вопросам повышения финансовой грамотности.',
+};
+
+export const pavlushina: Lector = {
+  avatar: pavlushinaImg,
+  name: 'Павлушина Наталья',
+  description: 'Компания «№ИгроN-сервис», высшее педагогическое образование. Сертифицированный тренер трансформационных игр "Деньги, в Дом!". Опыт проведения тренингов и различного рода индивидуальных консультаций более 15 лет. Ведущий и модератор корпоративных обучающих и мотивационных мероприятий.',
+};
+
+export const serkova: Lector = {
+  avatar: serkovaImg,
+  name: 'Наталья Серкова',
+  description: 'Главный экономист Отделения Тюмень Уральского ГУ Банка России',
+};
+
+export const vokhmyanina: Lector = {
+  avatar: vokhmyaninaImg,
+  name: 'Вохмянина Елена',
+  description: 'Экономист 1 категории Отделения Тюмень Уральского ГУ Банка России',
+};
+
+export const babakin: Lector = {
+  avatar: babakinImg,
+  name: 'Константин Бабакин',
+  description: 'Главный экономист Отделения Тюмень Уральского ГУ Банка России',
+};
+
+export const rylova: Lector = {
+  avatar: rylovaImg,
+  name: 'Рылова Анна',
+  description: 'Руководитель Делового клуба «Молодежная финансовая инициатива» ТРО ОООП «Союз защиты прав потребителей финансовых услуг»',
 };

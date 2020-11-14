@@ -7,7 +7,7 @@ import 'antd/dist/antd.css';
 import './App.css';
 import Main from './pages/Main/Main';
 import { client } from './apollo';
-import { AuthContext, AuthContextProvider } from './context/auth';
+import { ALLOWED_USERS, AuthContext, AuthContextProvider } from './context/auth';
 import Lector from './pages/Lector/Lector';
 import Gamezone from './pages/Gamezone/Gamezone';
 import Sandbox from './pages/Sandbox/Sandbox';
@@ -16,14 +16,16 @@ import Consultations from './pages/Consultations/Consultations';
 import Cinema from './pages/Cinema/Cinema';
 
 const ProtectedRoute: FC<RouteProps> = ({ component: Component, ...rest }) => {
-  const { token } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
+
+  const hasAccess = Boolean(user) && ALLOWED_USERS.some(id => user?.id === id);
 
   return (
     <Route
       {...rest}
       render={
         // @ts-ignore
-        props => (!token ? <Redirect to="/" /> : <Component {...props} />)
+        props => (!hasAccess ? <Redirect to="/" /> : <Component {...props} />)
       }
     />
   );

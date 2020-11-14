@@ -45,20 +45,22 @@ export const AuthContext = React.createContext<State>({
   },
 });
 
+export const ALLOWED_USERS = [
+  '5fafa98dea33a40772fea14b', // Melzer
+  '5faee6377cba153604a248a4', // Eugeny
+  '5fa809c6d6f8d0cae83f4345', // Amina
+];
+
+const INITIAL_TOKEN = localStorage.getItem('token');
+const INITIAL_USER = INITIAL_TOKEN ? jwtDecode(INITIAL_TOKEN) as User : null;
 export const AuthContextProvider: React.FC = ({ children }) => {
-  const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
-  const [user, setUser] = useState<User | null>(null);
+  const [token, setToken] = useState<string | null>(INITIAL_TOKEN);
+  const [user, setUser] = useState<User | null>(INITIAL_USER);
   const [score, setScore] = useState<number | null>(null);
   const [getScores] = useLazyQuery<GetUserScores>(GET_USER_SCORES,
     {
       onCompleted: ({ getUserScore }) => setScore(getUserScore),
     });
-
-  useEffect(() => {
-    if (token) {
-      setUser(jwtDecode(token) as User);
-    }
-  }, []);
 
   useEffect(() => {
     if (token) {

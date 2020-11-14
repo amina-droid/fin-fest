@@ -6,7 +6,7 @@
 import React, { useContext, useState } from 'react';
 import { LinkProps, useHistory } from 'react-router-dom';
 import { Button, Modal } from 'antd';
-import { AuthContext } from '../../../context/auth';
+import { ALLOWED_USERS, AuthContext } from '../../../context/auth';
 
 type Props = LinkProps & {
   className?: string;
@@ -15,9 +15,11 @@ type Props = LinkProps & {
 const SVGLink: React.FC<Props> = ({
   children, to, className, onClick,
 }) => {
-  const { token } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [visible, setVisible] = useState(false);
   const history = useHistory();
+
+  const hasAccess = Boolean(user) && ALLOWED_USERS.some(id => user?.id === id);
 
   const handlerClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
@@ -25,7 +27,7 @@ const SVGLink: React.FC<Props> = ({
       onClick(e);
     }
 
-    if (!token) {
+    if (!hasAccess) {
       setVisible(true);
       return;
     }
@@ -46,7 +48,7 @@ const SVGLink: React.FC<Props> = ({
         ]}
       >
         <p>Данный раздел недоступен</p>
-        <p>Возможно вы сможете в него войти если авторизуетесь</p>
+        <p>Вы сможете в него войти с 18 ноября а также если авторизуетесь!</p>
       </Modal>
     </>
   );

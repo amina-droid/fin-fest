@@ -76,17 +76,15 @@ const Consultations = () => (
         <Tabs.TabPane tab="Площадка 1" key="1">
           <Row gutter={[16, 0]} className={s.aboutContent}>
             <Col span={16} xs={24} sm={24} md={16}>
-              <div className={s.carousel}>
-                <Card className={s.card}>
-                  <div className={s.cardBody}>
-                    <ReactPlayer
-                      height="50vh"
-                      controls
-                      url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                    />
-                  </div>
-                </Card>
-              </div>
+              <Card>
+                <div className={s.cardBody}>
+                  <ReactPlayer
+                    height="50vh"
+                    controls
+                    url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                  />
+                </div>
+              </Card>
             </Col>
             <Col span={8} xs={24} sm={24} md={8}>
               <Chat topic="consultations/1" />
@@ -96,17 +94,15 @@ const Consultations = () => (
         <Tabs.TabPane tab="Площадка 2" key="2">
           <Row gutter={[16, 0]} className={s.aboutContent}>
             <Col span={16} xs={24} sm={24} md={16}>
-              <div className={s.carousel}>
-                <Card className={s.card}>
-                  <div className={s.cardBody}>
-                    <ReactPlayer
-                      height="50vh"
-                      controls
-                      url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                    />
-                  </div>
-                </Card>
-              </div>
+              <Card>
+                <div className={s.cardBody}>
+                  <ReactPlayer
+                    height="50vh"
+                    controls
+                    url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                  />
+                </div>
+              </Card>
             </Col>
             <Col span={8} xs={24} sm={24} md={8}>
               <Chat topic="consultations/2" />

@@ -17,11 +17,11 @@ type Props = {
 }
 
 const CommentList: React.FC<Props> = ({ comments }) => (
-  <CustomScroll allowOuterScroll>
+  <CustomScroll allowOuterScroll keepAtBottom>
     <List
       dataSource={comments}
-      header="Чат"
       itemLayout="horizontal"
+      className={s.commentsList}
       renderItem={({
         author, avatar, message, date,
       }) => (

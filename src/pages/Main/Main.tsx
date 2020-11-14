@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import moment from 'moment';
 import {
   Layout, Typography, Button, Row, Col, Image, Statistic,
 } from 'antd';
@@ -26,7 +27,7 @@ const BLOCKS: { [key: string]: string } = {
   reviews: 'Отзывы',
   partners: 'Партнеры',
 };
-
+const DEADLINE = moment('2020-11-18').toISOString();
 const Main = () => {
   const [usersCount, setUsersCount] = useState<number>(0);
   const { data, loading } = useQuery<GetUserCount>(GET_USER_COUNT);
@@ -77,7 +78,12 @@ const Main = () => {
           <Statistic
             value={usersCount}
             loading={loading}
-            title={<Title level={5}>Количество зарегистрированных пользователей</Title>}
+            title={<Title level={5}>Количество пользователей</Title>}
+          />
+          <Statistic.Countdown
+            value={DEADLINE}
+            format="HH:mm:ss"
+            title={<Title level={5}>До начала осталось</Title>}
           />
         </Layout>
         <Layout id="about" className={s.about}>

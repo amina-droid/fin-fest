@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import {
-  Avatar, Badge, Button, Popover,
+  Avatar, Badge, Button, Menu,
 } from 'antd';
 import { LoginOutlined } from '@ant-design/icons';
 import { useApolloClient, useMutation } from '@apollo/client';
@@ -18,6 +18,7 @@ const Profile: React.FC = () => {
     token,
     login,
     logout,
+    score,
     user,
   } = useContext(AuthContext);
   const [
@@ -40,13 +41,15 @@ const Profile: React.FC = () => {
       window.removeEventListener('message', authHandler);
 
       try {
-        const { code } = event.data.payload;
-        const { data, errors } = await authVK({ variables: { code } });
+        const code = event.data.payload?.code;
+        if (code) {
+          const { data, errors } = await authVK({ variables: { code } });
 
-        if (errors || !data) return;
+          if (errors || !data) return;
 
-        const { token: responseToken } = data.authVK;
-        login(responseToken);
+          const { token: responseToken } = data.authVK;
+          login(responseToken);
+        }
       } catch (error) {
         // eslint-disable-next-line no-console
         console.error(error);
@@ -86,29 +89,26 @@ const Profile: React.FC = () => {
     );
   }
 
-  const scores = user?.score || '0';
-  const content = (
-    <>
-      <div className={s.profileTooltip}>
-        Мои баллы: {scores}
-      </div>
-      <Button type="text" block danger onClick={logout}>Выйти</Button>
-    </>
-  );
+  const scores = score || '0';
 
   return (
-    <Popover
-      content={content}
-      title={`${user?.name.givenName} ${user?.name.familyName}`}
-      trigger="hover"
-    >
-      <div className={s.profile}>
-        <span className={s.profileName}>{user?.name.givenName}</span>
-        <Badge count={scores} size="small">
-          <Avatar src={user?.photos[0].url} />
-        </Badge>
-      </div>
-    </Popover>
+    <Menu theme="dark" defaultSelectedKeys={['']} mode="horizontal">
+      <Menu.SubMenu title={(
+        <>
+          <span className={s.profileName}>{user?.name.givenName}</span>
+          <Badge count={scores} size="small">
+            <Avatar src={user?.photos[0].url} />
+          </Badge>
+        </>
+      )}
+      >
+        <Menu.Item disabled>{user?.name.givenName} {user?.name.familyName}</Menu.Item>
+        <Menu.Item disabled>Мои баллы: {scores}</Menu.Item>
+        <Menu.Item>
+          <Button type="text" block danger onClick={logout}>Выйти</Button>
+        </Menu.Item>
+      </Menu.SubMenu>
+    </Menu>
   );
 };
 

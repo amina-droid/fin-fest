@@ -31,8 +31,8 @@ const ProtectedRoute: FC<RouteProps> = ({ component: Component, ...rest }) => {
 
 function App() {
   return (
-    <AuthContextProvider>
-      <ApolloProvider client={client}>
+    <ApolloProvider client={client}>
+      <AuthContextProvider>
         <BrowserRouter>
           <div className="App">
             <Route exact path="/" component={Main} />
@@ -44,8 +44,9 @@ function App() {
             <ProtectedRoute exact path="/cinema" component={Cinema} />
           </div>
         </BrowserRouter>
-      </ApolloProvider>
-    </AuthContextProvider>
+      </AuthContextProvider>
+    </ApolloProvider>
+
   );
 }
 

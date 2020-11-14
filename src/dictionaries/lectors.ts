@@ -24,6 +24,8 @@ import serkovaImg from './img/Serkova.jpg';
 import vokhmyaninaImg from './img/Vokhmyanina.jpg';
 import babakinImg from './img/Babakin.jpg';
 import rylovaImg from './img/Rylova.jpg';
+import drachukImg from './img/Drachuk.jpg';
+import zhuravskayaImg from './img/Zhuravskaya.jpg';
 
 type Lector = {
   name: string;
@@ -191,4 +193,16 @@ export const rylova: Lector = {
   avatar: rylovaImg,
   name: 'Рылова Анна',
   description: 'Руководитель Делового клуба «Молодежная финансовая инициатива» ТРО ОООП «Союз защиты прав потребителей финансовых услуг»',
+};
+
+export const drachuk: Lector = {
+  avatar: drachukImg,
+  name: 'Татьяна Драчук',
+  description: 'Председатель ПК «Многофункциональный центр Домашний Очаг». Руководитель детского центра "Солнечный круг" Педагог, психолог.',
+};
+
+export const zhuravskaya: Lector = {
+  avatar: zhuravskayaImg,
+  name: 'Лариса Журавская',
+  description: 'Координатор и преподаватель Центра Духовного Развития г.Тюмени',
 };

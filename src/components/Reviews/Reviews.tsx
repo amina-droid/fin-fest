@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import {
   Avatar, Card, Carousel, Typography, Grid,
 } from 'antd';

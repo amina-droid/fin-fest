@@ -5,11 +5,11 @@
 
 .card
     &Container
-        max-width: 50vw
-        padding: 10px 0
+        max-width: calc(33vw - calc(var(--section-padding) / 3))
+        padding: 10px 10px
 
         @media all and (max-width: 900px)
-            max-width: 90vw
+            max-width: calc(100vw - calc(var(--section-padding) / 3))
 
     &Body
         width: 100%

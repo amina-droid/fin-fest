@@ -64,6 +64,7 @@ module.exports = {
         "import/prefer-default-export": "off",
         "indent": ["error", 2],
         "dot-notation": [0],
+        "no-nested-ternary": [0],
         "no-underscore-dangle": ["error", { "allow": ["_id"] }],
         "camelcase": [0],
         "jsx-a11y/anchor-is-valid": [ "error", {

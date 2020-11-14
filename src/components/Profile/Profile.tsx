@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import {
-  Avatar, Badge, Button, Menu, Popover,
+  Avatar, Badge, Button, Menu,
 } from 'antd';
 import { LoginOutlined } from '@ant-design/icons';
 import { useApolloClient, useMutation } from '@apollo/client';
@@ -90,13 +90,6 @@ const Profile: React.FC = () => {
   }
 
   const scores = score || '0';
-  const content = (
-    <>
-      <div className={s.profileTooltip}>
-        Мои баллы: {scores}
-      </div>
-    </>
-  );
 
   return (
     <Menu theme="dark" defaultSelectedKeys={['']} mode="horizontal">

@@ -9,6 +9,7 @@ import s from './MasterClasses.module.sass';
 import { Chat } from '../../components/Chat';
 import { firstArea, lectors, secondArea } from './dictionaries';
 import { Footer } from '../../components/Footer';
+import { Test } from '../../components/Test';
 
 const { Title } = Typography;
 
@@ -85,6 +86,7 @@ const MasterClasses = () => (
                     url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                   />
                 </div>
+                <Test page="masterclasses" />
               </Card>
             </Col>
             <Col span={8} xs={24} sm={24} md={8}>
@@ -105,6 +107,7 @@ const MasterClasses = () => (
                   />
                 </div>
               </Card>
+              <Test page="masterclasses" />
             </Col>
             <Col span={8} xs={24} sm={24} md={8}>
               <Chat topic="masterclasses/2" />

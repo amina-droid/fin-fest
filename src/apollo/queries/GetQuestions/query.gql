@@ -1,0 +1,10 @@
+query GetQuestions {
+    questions {
+        id
+        question
+        values {
+            value
+            label
+        }
+    }
+}

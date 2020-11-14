@@ -10,6 +10,7 @@ import { client } from './apollo';
 import { AuthContext, AuthContextProvider } from './context/auth';
 import Lector from './pages/Lector/Lector';
 import Gamezone from './pages/Gamezone/Gamezone';
+import MasterClasses from './pages/MasterClasses/MasterClasses';
 
 const ProtectedRoute: FC<RouteProps> = ({ component: Component, ...rest }) => {
   const { token } = useContext(AuthContext);
@@ -34,6 +35,7 @@ function App() {
             <Route exact path="/" component={Main} />
             <ProtectedRoute exact path="/lector" component={Lector} />
             <ProtectedRoute exact path="/gamezone" component={Gamezone} />
+            <ProtectedRoute exact path="/master-classes" component={MasterClasses} />
           </div>
         </BrowserRouter>
       </ApolloProvider>

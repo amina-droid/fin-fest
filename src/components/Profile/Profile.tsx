@@ -18,6 +18,7 @@ const Profile: React.FC = () => {
     token,
     login,
     logout,
+    score,
     user,
   } = useContext(AuthContext);
   const [
@@ -40,13 +41,15 @@ const Profile: React.FC = () => {
       window.removeEventListener('message', authHandler);
 
       try {
-        const { code } = event.data.payload;
-        const { data, errors } = await authVK({ variables: { code } });
+        const code = event.data.payload?.code;
+        if (code) {
+          const { data, errors } = await authVK({ variables: { code } });
 
-        if (errors || !data) return;
+          if (errors || !data) return;
 
-        const { token: responseToken } = data.authVK;
-        login(responseToken);
+          const { token: responseToken } = data.authVK;
+          login(responseToken);
+        }
       } catch (error) {
         // eslint-disable-next-line no-console
         console.error(error);
@@ -86,7 +89,7 @@ const Profile: React.FC = () => {
     );
   }
 
-  const scores = user?.score || '0';
+  const scores = score || '0';
   const content = (
     <>
       <div className={s.profileTooltip}>

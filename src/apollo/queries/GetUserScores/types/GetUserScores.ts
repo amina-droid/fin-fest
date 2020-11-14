@@ -3,9 +3,9 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL subscription operation: SubscribeToNewUser
+// GraphQL query operation: GetUserScores
 // ====================================================
 
-export interface SubscribeToNewUser {
-  newUserRegistered: boolean;
+export interface GetUserScores {
+  getUserScore: number;
 }

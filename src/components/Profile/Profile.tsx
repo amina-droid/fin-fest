@@ -9,6 +9,7 @@ import {
   GET_VK_OATH_REDIRECT_URL, GetVKOAuthRedirect,
 } from '../../apollo';
 import { AuthContext } from '../../context/auth';
+import { getWordForScores } from '../../dictionaries';
 
 import s from './Profile.module.sass';
 
@@ -103,7 +104,7 @@ const Profile: React.FC = () => {
       )}
       >
         <Menu.Item disabled>{user?.name.givenName} {user?.name.familyName}</Menu.Item>
-        <Menu.Item disabled>Мои баллы: {scores}</Menu.Item>
+        <Menu.Item disabled>У вас <b>{scores} {getWordForScores(scores)}</b></Menu.Item>
         <Menu.Item>
           <Button type="text" block danger onClick={logout}>Выйти</Button>
         </Menu.Item>

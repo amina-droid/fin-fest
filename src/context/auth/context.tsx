@@ -3,6 +3,7 @@ import jwtDecode from 'jwt-decode';
 import { message } from 'antd';
 import { useLazyQuery } from '@apollo/client';
 import { GET_USER_SCORES, GetUserScores } from '../../apollo';
+import { getWordForScores } from '../../dictionaries';
 
 interface State {
   token: string | null;
@@ -86,8 +87,8 @@ export const AuthContextProvider: React.FC = ({ children }) => {
       const scoreDifference = newScore - (prevScore || 0);
 
       message.success(scoreDifference > 0
-        ? `Вы получили +${scoreDifference} за правильные ответы к своим баллам!`
-        : `Вы потратили ${scoreDifference} из своих баллов!`);
+        ? `Вы получили +${scoreDifference} ${getWordForScores(scoreDifference)} за правильные ответы!`
+        : `Вы потратили ${scoreDifference} ${getWordForScores(scoreDifference)}!`);
       return newScore;
     });
   };

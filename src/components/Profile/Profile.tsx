@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import {
-  Avatar, Badge, Button, Popover,
+  Avatar, Badge, Button, Menu, Popover,
 } from 'antd';
 import { LoginOutlined } from '@ant-design/icons';
 import { useApolloClient, useMutation } from '@apollo/client';
@@ -95,23 +95,27 @@ const Profile: React.FC = () => {
       <div className={s.profileTooltip}>
         Мои баллы: {scores}
       </div>
-      <Button type="text" block danger onClick={logout}>Выйти</Button>
     </>
   );
 
   return (
-    <Popover
-      content={content}
-      title={`${user?.name.givenName} ${user?.name.familyName}`}
-      trigger="hover"
-    >
-      <div className={s.profile}>
-        <span className={s.profileName}>{user?.name.givenName}</span>
-        <Badge count={scores} size="small">
-          <Avatar src={user?.photos[0].url} />
-        </Badge>
-      </div>
-    </Popover>
+    <Menu theme="dark" defaultSelectedKeys={['']} mode="horizontal">
+      <Menu.SubMenu title={(
+        <>
+          <span className={s.profileName}>{user?.name.givenName}</span>
+          <Badge count={scores} size="small">
+            <Avatar src={user?.photos[0].url} />
+          </Badge>
+        </>
+      )}
+      >
+        <Menu.Item disabled>{user?.name.givenName} {user?.name.familyName}</Menu.Item>
+        <Menu.Item disabled>Мои баллы: {scores}</Menu.Item>
+        <Menu.Item>
+          <Button type="text" block danger onClick={logout}>Выйти</Button>
+        </Menu.Item>
+      </Menu.SubMenu>
+    </Menu>
   );
 };
 

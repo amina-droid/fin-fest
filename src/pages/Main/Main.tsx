@@ -83,9 +83,6 @@ const Main = () => {
         <Layout id="about" className={s.about}>
           <Title>О фестивале</Title>
           <Row gutter={[16, 0]} className={s.aboutContent}>
-            <Col span={8} xs={24} sm={24} md={8}>
-              <Image src={about} className={s.aboutImage} />
-            </Col>
             <Col span={16} xs={24} sm={24} md={16}>
               <Typography className={s.aboutText}>
                 <Title level={3}>
@@ -149,6 +146,9 @@ const Main = () => {
                   </Text>
                 </Paragraph>
               </Typography>
+            </Col>
+            <Col span={8} xs={24} sm={24} md={8}>
+              <Image src={about} className={s.aboutImage} />
             </Col>
           </Row>
         </Layout>

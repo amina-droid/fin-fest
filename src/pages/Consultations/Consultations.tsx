@@ -9,6 +9,7 @@ import s from './Consultations.module.sass';
 import { Chat } from '../../components/Chat';
 import { firstArea, lectors, secondArea } from './dictionaries';
 import { Footer } from '../../components/Footer';
+import { Test } from '../../components/Test';
 
 const { Title } = Typography;
 
@@ -85,6 +86,7 @@ const Consultations = () => (
                     url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                   />
                 </div>
+                <Test page="consultations" />
               </Card>
             </Col>
             <Col span={8} xs={24} sm={24} md={8}>
@@ -104,6 +106,7 @@ const Consultations = () => (
                     url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                   />
                 </div>
+                <Test page="consultations" />
               </Card>
             </Col>
             <Col span={8} xs={24} sm={24} md={8}>

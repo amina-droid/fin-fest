@@ -1,0 +1,6 @@
+mutation SendAnswers($answers: JSON!) {
+    answers(answers: $answers) {
+        correctAnswers
+        newUserScore
+    }
+}

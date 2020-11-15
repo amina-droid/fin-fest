@@ -9,6 +9,7 @@ import s from './Sandbox.module.sass';
 import { Chat } from '../../components/Chat';
 import { firstArea, lectors } from './dictionaries';
 import { Footer } from '../../components/Footer';
+import { Test } from '../../components/Test';
 
 const { Title } = Typography;
 
@@ -69,6 +70,7 @@ const Sandbox = () => (
                 url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
               />
             </div>
+            <Test page="sandbox" />
           </Card>
         </Col>
         <Col span={8} xs={24} sm={24} md={8}>

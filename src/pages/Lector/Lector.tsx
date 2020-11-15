@@ -9,6 +9,7 @@ import s from './Lector.module.sass';
 import { Chat } from '../../components/Chat';
 import { firstArea, lectors, secondArea } from './dictionaries';
 import { Footer } from '../../components/Footer';
+import { Test } from '../../components/Test';
 
 const { Title } = Typography;
 
@@ -84,6 +85,7 @@ const Lector = () => (
                     controls
                     url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                   />
+                  <Test page="lector" />
                 </div>
               </Card>
             </Col>
@@ -104,6 +106,7 @@ const Lector = () => (
                     url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                   />
                 </div>
+                <Test page="lector" />
               </Card>
             </Col>
             <Col span={8} xs={24} sm={24} md={8}>

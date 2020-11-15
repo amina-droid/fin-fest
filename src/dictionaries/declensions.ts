@@ -13,4 +13,5 @@ const createDeclensions = (textForms: TextForms) => new Proxy<Dictionary>({}, {
   },
 });
 
+export const QUESTION_WORDS = createDeclensions(['вопрос', 'вопроса', 'вопросов']);
 export const SCORES_WORDS = createDeclensions(['балл', 'балла', 'баллов']);

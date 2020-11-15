@@ -2,16 +2,22 @@ import React, { useState, useEffect } from 'react';
 import jwtDecode from 'jwt-decode';
 import { message } from 'antd';
 import { useLazyQuery } from '@apollo/client';
-import { GET_USER_SCORES, GetUserScores } from '../../apollo';
+import { GET_USER_INITIAL_DATA, GetUserInitialData } from '../../apollo';
 import { SCORES_WORDS } from '../../dictionaries';
 
 interface State {
   token: string | null;
   user: User | null;
-  score: number | null;
+  userState: UserState | null;
   updateScore: (score: number) => void;
+  updateCodes: (code: string) => void;
   login: Login;
   logout: () => void;
+}
+
+type UserState = {
+  score: number | null,
+  codes: string[] | null,
 }
 
 export interface User {
@@ -34,8 +40,11 @@ export interface Login {
 export const AuthContext = React.createContext<State>({
   token: null,
   user: null,
-  score: null,
+  userState: null,
   updateScore: () => {
+    /* do nothing. */
+  },
+  updateCodes: () => {
     /* do nothing. */
   },
   login: () => {
@@ -57,17 +66,20 @@ const INITIAL_USER = INITIAL_TOKEN ? jwtDecode(INITIAL_TOKEN) as User : null;
 export const AuthContextProvider: React.FC = ({ children }) => {
   const [token, setToken] = useState<string | null>(INITIAL_TOKEN);
   const [user, setUser] = useState<User | null>(INITIAL_USER);
-  const [score, setScore] = useState<number | null>(null);
-  const [getScores] = useLazyQuery<GetUserScores>(GET_USER_SCORES,
+  const [userState, setUserState] = useState<UserState | null>(null);
+  const [getUserInitialData] = useLazyQuery<GetUserInitialData>(GET_USER_INITIAL_DATA,
     {
-      onCompleted: ({ getUserScore }) => setScore(getUserScore),
+      onCompleted: ({ getUserScore: score, getUserProductCodes: codes }) => setUserState({
+        codes,
+        score,
+      }),
     });
 
   useEffect(() => {
     if (token) {
-      getScores();
+      getUserInitialData();
     }
-  }, [token, getScores]);
+  }, [token, getUserInitialData]);
 
   const login: Login = (newToken: string) => {
     setToken(newToken);
@@ -77,30 +89,52 @@ export const AuthContextProvider: React.FC = ({ children }) => {
 
   const logout = () => {
     setToken(null);
-    setScore(null);
+    setUserState(null);
     localStorage.removeItem('token');
     setUser(null);
   };
 
   const updateScore = (newScore: number) => {
-    setScore(prevScore => {
-      const scoreDifference = newScore - (prevScore || 0);
+    setUserState(prevState => {
+      const prevScore = prevState?.score || 0;
+      const scoreDifference = newScore - prevScore;
 
       if (!scoreDifference) {
-        return newScore;
+        return {
+          codes: prevState?.codes || null,
+          score: newScore,
+        };
       }
 
       message.success(scoreDifference > 0
         ? `Вы получили +${scoreDifference} ${SCORES_WORDS[scoreDifference]} за правильные ответы!`
         : `Вы потратили ${scoreDifference} ${SCORES_WORDS[scoreDifference]}!`);
-      return newScore;
+      return {
+        codes: prevState?.codes || null,
+        score: newScore,
+      };
+    });
+  };
+
+  const updateCodes = (newCode: string) => {
+    setUserState(prevState => {
+      const prevCodes = prevState?.codes || [];
+
+      return {
+        score: prevState?.score || null,
+        codes: [
+          ...prevCodes,
+          newCode,
+        ],
+      };
     });
   };
 
   return (
     <AuthContext.Provider value={{
-      score,
+      userState,
       updateScore,
+      updateCodes,
       logout,
       login,
       token,

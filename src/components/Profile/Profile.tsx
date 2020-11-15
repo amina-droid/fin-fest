@@ -9,7 +9,7 @@ import {
   GET_VK_OATH_REDIRECT_URL, GetVKOAuthRedirect,
 } from '../../apollo';
 import { AuthContext } from '../../context/auth';
-import { SCORES_WORDS } from '../../dictionaries';
+import { SCORES_WORDS, PRODUCT_WORDS } from '../../dictionaries';
 
 import s from './Profile.module.sass';
 
@@ -19,7 +19,7 @@ const Profile: React.FC = () => {
     token,
     login,
     logout,
-    score,
+    userState,
     user,
   } = useContext(AuthContext);
   const [
@@ -90,21 +90,29 @@ const Profile: React.FC = () => {
     );
   }
 
-  const scores = score || '0';
-
+  const scores = userState?.score || '0';
+  const codes = Boolean(userState?.codes?.length) && userState?.codes;
   return (
     <Menu theme="dark" defaultSelectedKeys={['']} mode="horizontal">
-      <Menu.SubMenu title={(
-        <>
-          <span className={s.profileName}>{user?.name.givenName}</span>
-          <Badge count={scores} size="small">
-            <Avatar src={user?.photos[0].url} />
-          </Badge>
-        </>
-      )}
+      <Menu.SubMenu
+        key="key1"
+        title={(
+          <>
+            <span className={s.profileName}>{user?.name.givenName}</span>
+            <Badge count={scores} size="small">
+              <Avatar src={user?.photos[0].url} />
+            </Badge>
+          </>
+        )}
       >
-        <Menu.Item disabled>{user?.name.givenName} {user?.name.familyName}</Menu.Item>
+        <Menu.Item>{user?.name.givenName} {user?.name.familyName}</Menu.Item>
         <Menu.Item disabled>У вас <b>{scores} {SCORES_WORDS[scores]}</b></Menu.Item>
+        {codes
+        && (
+          <Menu.Item disabled>
+            У вас <b>{codes.length} {PRODUCT_WORDS[codes.length]}</b>
+          </Menu.Item>
+        )}
         <Menu.Item>
           <Button type="text" block danger onClick={logout}>Выйти</Button>
         </Menu.Item>

@@ -29,12 +29,29 @@ type Message {
 type Mutation {
     answers(answers: JSON!): Result!
     authVK(code: String!): AuthResponse!
+    purchase(productId: ObjectId!): PurchaseResult!
     sendChatMessage(message: String!, topic: String!): Boolean!
 }
 
+type Product {
+    _id: ObjectId!
+    count: Float!
+    description: String!
+    images: [String!]!
+    organization: String!
+    price: Float!
+}
+
+type PurchaseResult {
+    code: String
+    newScore: Float!
+}
+
 type Query {
+    getUserProductCodes: [String!]!
     getUserScore: Float!
     getVKOAuthRedirect: AuthRedirect!
+    products: [Product!]!
     questions: [Question!]!
     reviews: [Review!]!
     usersCount: Float!
@@ -47,7 +64,8 @@ type Question {
 }
 
 type Result {
-    score: Float!
+    correctAnswers: Float!
+    newUserScore: Float!
 }
 
 type Review {

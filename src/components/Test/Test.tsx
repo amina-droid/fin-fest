@@ -1,6 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {
+  useCallback, useContext, useEffect, useState,
+} from 'react';
 import {
-  Button, Modal, Typography, Form,
+  Button, Modal, Typography,
 } from 'antd';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { GET_QUESTIONS, GetQuestions } from '../../apollo';
@@ -38,35 +40,45 @@ const Test: React.FC<Props> = ({ page }) => {
   const { updateScore } = useContext(AuthContext);
 
   useEffect(() => {
-    if (data?.questions && Object.keys(answers).length === data?.questions.length) {
-      sendAnswers({
-        variables: { answers },
-      });
+    let isUnmount = false;
+    if (!isUnmount) {
+      if (data?.questions
+        && Object.keys(answers).length === data?.questions.length
+      ) {
+        sendAnswers({
+          variables: { answers },
+        });
+      }
     }
+    return () => { isUnmount = true; };
   }, [answers, data, sendAnswers]);
 
   useEffect(() => {
-    if (answersData) {
-      updateScore(answersData.answers.newUserScore);
-      setResult(answersData.answers.correctAnswers);
-      setDisabled(true);
-      localStorage.setItem(`${page}_testDone`, 'true');
+    let isUnmount = false;
+    if (!isUnmount) {
+      if (answersData) {
+        localStorage.setItem(`${page}_testDone`, 'true');
+        updateScore(answersData.answers.newUserScore);
+        setResult(answersData.answers.correctAnswers);
+        setDisabled(true);
+      }
     }
-  }, [answersData, updateScore]);
+    return () => { isUnmount = true; };
+  }, [page, answersData, setDisabled]);
 
-  const openModal = () => {
+  const openModal = useCallback(() => {
     getQuestions();
     setOpen(true);
-  };
-  const closeModal = () => setOpen(false);
+  }, [getQuestions, setOpen]);
+  const closeModal = useCallback(() => setOpen(false), [setOpen]);
 
-  const handlerSubmit = (value: { [key: string]: number }) => {
-    setCount(count + 1);
+  const handlerSubmit = useCallback((value: { [key: string]: number }) => {
+    setCount(prevCount => prevCount + 1);
     setAnswers(prevState => ({
       ...prevState,
       ...value,
     }));
-  };
+  }, [setCount, setAnswers]);
 
   const isQuestionsEnd: boolean = count === data?.questions.length;
 

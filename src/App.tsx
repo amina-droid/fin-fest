@@ -14,6 +14,7 @@ import Sandbox from './pages/Sandbox/Sandbox';
 import MasterClasses from './pages/MasterClasses/MasterClasses';
 import Consultations from './pages/Consultations/Consultations';
 import Cinema from './pages/Cinema/Cinema';
+import Shop from './pages/Shop/Shop';
 
 const ProtectedRoute: FC<RouteProps> = ({ component: Component, ...rest }) => {
   const { user } = useContext(AuthContext);
@@ -44,6 +45,7 @@ function App() {
             <ProtectedRoute exact path="/sandbox" component={Sandbox} />
             <ProtectedRoute exact path="/consultations" component={Consultations} />
             <ProtectedRoute exact path="/cinema" component={Cinema} />
+            <ProtectedRoute exact path="/shop" component={Shop} />
           </div>
         </BrowserRouter>
       </AuthContextProvider>

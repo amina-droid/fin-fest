@@ -4,9 +4,10 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: GetUserScores
+// GraphQL query operation: GetUserInitialData
 // ====================================================
 
-export interface GetUserScores {
+export interface GetUserInitialData {
   getUserScore: number;
+  getUserProductCodes: string[];
 }

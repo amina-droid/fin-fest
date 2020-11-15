@@ -106,8 +106,8 @@ const MasterClasses = () => (
                     url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                   />
                 </div>
+                <Test page="masterclasses" />
               </Card>
-              <Test page="masterclasses" />
             </Col>
             <Col span={8} xs={24} sm={24} md={8}>
               <Chat topic="masterclasses/2" />

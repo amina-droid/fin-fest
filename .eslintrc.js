@@ -47,6 +47,7 @@ module.exports = {
         "react/jsx-props-no-spreading": [1, {
             "html": "ignore",
         }],
+        "react/display-name": [0],
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/interface-name-prefix": 0,

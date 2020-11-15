@@ -86,6 +86,10 @@ export const AuthContextProvider: React.FC = ({ children }) => {
     setScore(prevScore => {
       const scoreDifference = newScore - (prevScore || 0);
 
+      if (!scoreDifference) {
+        return newScore;
+      }
+
       message.success(scoreDifference > 0
         ? `Вы получили +${scoreDifference} ${SCORES_WORDS[scoreDifference]} за правильные ответы!`
         : `Вы потратили ${scoreDifference} ${SCORES_WORDS[scoreDifference]}!`);

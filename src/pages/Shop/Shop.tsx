@@ -1,5 +1,5 @@
 import {
-  Card, Col, Layout, Row, Typography, Grid, Carousel, Image, Skeleton, Modal, message,
+  Card, Col, Layout, Row, Typography, Grid, Carousel, Skeleton, Modal,
 } from 'antd';
 import React, { FC, useContext } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
@@ -163,7 +163,8 @@ const Shop: FC = () => {
                       <br />
                       <p>
                         <i>Цена: {product.price} {SCORES_WORDS[product.price]}</i>
-                        {'\n'}<i>Осталось: {product.count} {EXEMPLAR_WORDS[product.count]}</i>
+                        <br />
+                        <i>Осталось: {product.count} {EXEMPLAR_WORDS[product.count]}</i>
                       </p>
                     </div>
                   </div>

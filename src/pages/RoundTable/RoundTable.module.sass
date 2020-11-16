@@ -1,0 +1,23 @@
+.section
+  display: flex
+  align-items: center
+  padding: calc(var(--section-padding) / 2) var(--section-padding)
+
+  &Content
+    max-width: 900px
+    text-align: justify
+
+  &:nth-child(even)
+    background: white
+
+  & ol > li:before
+    content: ''
+
+.title
+  margin-top: calc(var(--section-padding) / 2)
+  padding: calc(var(--section-padding) / 2) var(--section-padding) 0
+  text-align: center
+
+
+.subtitle
+  text-align: center

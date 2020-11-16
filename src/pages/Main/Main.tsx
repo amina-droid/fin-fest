@@ -9,11 +9,11 @@ import { Map } from '../../components/Map';
 import Reviews from '../../components/Reviews/Reviews';
 import about from '../../img/about.jpg';
 import finpotreb from '../../img/finpotreb.png';
-import partnersDictionary from './partners/dictionary';
 
 import s from './Main.module.sass';
 import Header, { scrollTo } from '../../components/Header/Header';
 import { Footer } from '../../components/Footer';
+import { Partners } from '../../components/Partners';
 import {
   GET_USER_COUNT, GetUserCount, SUBSCRIBE_TO_NEW_USER, SubscribeToNewUser,
 } from '../../apollo';
@@ -180,23 +180,7 @@ const Main = () => {
           <Paragraph>Мы благодарим наших партнеров за участие в
             организации Фестиваля и помощь в формировании призового фонда!
           </Paragraph>
-          <div className={s.partnersContainer}>
-            {partnersDictionary.map(partner => (
-              <a
-                className={s.partnersImgLink}
-                href={partner.link || ''}
-                target="_blank"
-                rel="noreferrer"
-                key={partner.link}
-              >
-                <img
-                  alt={partner.link || ''}
-                  src={partner.img}
-                  className={s.partnersImg}
-                />
-              </a>
-            ))}
-          </div>
+          <Partners />
         </Layout>
       </Content>
       <Footer />

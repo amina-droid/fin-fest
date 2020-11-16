@@ -14,13 +14,15 @@ export type Message = {
 }
 type Props = {
   comments: Message[];
+  loading?: boolean;
 }
 
-const CommentList: React.FC<Props> = ({ comments }) => (
+const CommentList: React.FC<Props> = ({ comments, loading }) => (
   <CustomScroll allowOuterScroll keepAtBottom>
     <List
       dataSource={comments}
       itemLayout="horizontal"
+      loading={loading}
       className={s.commentsList}
       renderItem={({
         author, avatar, message, date,

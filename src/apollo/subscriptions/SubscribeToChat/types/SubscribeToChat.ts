@@ -22,7 +22,7 @@ export interface SubscribeToChat_subscribeToChat {
   author: SubscribeToChat_subscribeToChat_author;
   avatar: SubscribeToChat_subscribeToChat_avatar | null;
   message: string;
-  date: any;
+  createdAt: any;
 }
 
 export interface SubscribeToChat {

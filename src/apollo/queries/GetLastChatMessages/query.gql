@@ -1,7 +1,7 @@
-subscription SubscribeToChat($topic: String!) {
-    subscribeToChat(topic: $topic) {
+query GetLastChatMessages($topic: String!) {
+    getLastTwentyMessages(topic: $topic) {
         author {
-            givenName,
+            givenName
             familyName
         }
         avatar {

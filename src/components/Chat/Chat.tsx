@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { useMutation, useSubscription } from '@apollo/client';
+import { useMutation, useQuery, useSubscription } from '@apollo/client';
 import moment from 'moment';
 import {
   Avatar, Comment,
@@ -9,6 +9,7 @@ import { AuthContext } from '../../context/auth';
 import {
   SUBSCRIBE_TO_CHAT, SubscribeToChat, SubscribeToChatVariables,
   SEND_CHAT_MESSAGE, SendChatMessage, SendChatMessageVariables,
+  GET_LAST_CHAT_MESSAGES, GetLastChatMessages, GetLastChatMessagesVariables,
 } from '../../apollo';
 import CommentList, { Message } from './CommentList';
 import Editor from './Editor';
@@ -22,12 +23,12 @@ function getChatMessageFromSocket(socketMessage: MessageFromSocket): Message {
   const {
     author,
     avatar,
-    date,
+    createdAt,
     message,
   } = socketMessage;
   const name = `${author.givenName} ${author.familyName}`;
   const img = avatar?.url;
-  const datetime = moment(date);
+  const datetime = moment(createdAt);
 
   return ({
     avatar: img,
@@ -39,13 +40,6 @@ function getChatMessageFromSocket(socketMessage: MessageFromSocket): Message {
 const Chat: React.FC<Props> = ({ topic }) => {
   const { user } = useContext(AuthContext);
   const [chatMessages, setChatMessages] = useState<Message[]>([]);
-  const [
-    sendMessage,
-    { loading },
-  ] = useMutation<SendChatMessage, SendChatMessageVariables>(
-    SEND_CHAT_MESSAGE,
-  );
-
   useSubscription<SubscribeToChat, SubscribeToChatVariables>(
     SUBSCRIBE_TO_CHAT,
     {
@@ -60,6 +54,25 @@ const Chat: React.FC<Props> = ({ topic }) => {
         topic,
       },
     },
+  );
+  const { loading: previousLoading } = useQuery<GetLastChatMessages, GetLastChatMessagesVariables>(
+    GET_LAST_CHAT_MESSAGES,
+    {
+      variables: { topic },
+      fetchPolicy: 'no-cache',
+      onCompleted: ({ getLastTwentyMessages: previousMessages }) => {
+        setChatMessages(prevState => ([
+          ...previousMessages.map(getChatMessageFromSocket).reverse(),
+          ...prevState,
+        ]));
+      },
+    },
+  );
+  const [
+    sendMessage,
+    { loading },
+  ] = useMutation<SendChatMessage, SendChatMessageVariables>(
+    SEND_CHAT_MESSAGE,
   );
 
   const handleSubmit = (message: string) => {
@@ -77,7 +90,7 @@ const Chat: React.FC<Props> = ({ topic }) => {
   const name = user.name.givenName;
   return (
     <>
-      <CommentList comments={chatMessages} />
+      <CommentList comments={chatMessages} loading={previousLoading} />
       <Comment
         avatar={(
           <Avatar

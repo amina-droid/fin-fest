@@ -4,3 +4,4 @@ export * from './GetUserCount';
 export * from './GetUserInitialData';
 export * from './GetQuestions';
 export * from './GetProducts';
+export * from './GetLastChatMessages';

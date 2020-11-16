@@ -24,15 +24,22 @@
 .statistic
     background: white
     display: flex
-    flex-flow: row wrap
+    flex-flow: row
     justify-content: space-around
     align-items: center
     text-align: center
+
+    @media all and (max-width: 710px)
+        flex-flow: column
 
     &Img
         max-width: 205px
         display: flex
         flex-direction: column
+
+        @media all and (max-width: 710px)
+            margin-top: 20px
+            margin-bottom: 20px
 
         & > img
             max-width: 100%

@@ -17,6 +17,7 @@ import Cinema from './pages/Cinema/Cinema';
 import Shop from './pages/Shop/Shop';
 import Fair from './pages/Fair/Fair';
 import RoundTable from './pages/RoundTable/RoundTable';
+import RouterScroll from './components/RouterScroll';
 
 const ProtectedRoute: FC<RouteProps> = ({ component: Component, ...rest }) => {
   const { user } = useContext(AuthContext);
@@ -39,6 +40,7 @@ function App() {
     <ApolloProvider client={client}>
       <AuthContextProvider>
         <BrowserRouter>
+          <RouterScroll />
           <div className="App">
             <Route exact path="/" component={Main} />
             <ProtectedRoute exact path="/lector" component={Lector} />

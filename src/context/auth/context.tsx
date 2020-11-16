@@ -59,6 +59,7 @@ export const ALLOWED_USERS = [
   '5fafa98dea33a40772fea14b', // Melzer
   '5faee6377cba153604a248a4', // Eugeny
   '5fa809c6d6f8d0cae83f4345', // Amina
+  '5faefe8dea33a40772fea14a', // Marya
 ];
 
 const INITIAL_TOKEN = localStorage.getItem('token');

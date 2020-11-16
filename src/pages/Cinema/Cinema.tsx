@@ -33,9 +33,11 @@ const Cinema = () => (
           </Tabs>
         </Col>
         <Col span={12} xs={24} sm={24} md={12}>
-          <Timeline mode="alternate">
+          <Timeline mode="right">
             {firstArea.map(area => (
-              <Timeline.Item label={area.text} key={area.text} />
+              <Timeline.Item key={area.text}>
+                {area.text}
+              </Timeline.Item>
             ))}
           </Timeline>
         </Col>

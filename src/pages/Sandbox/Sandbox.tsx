@@ -11,17 +11,35 @@ import { firstArea, lectors } from './dictionaries';
 import { Footer } from '../../components/Footer';
 import { Test } from '../../components/Test';
 
-const { Title } = Typography;
+const { Title, Paragraph } = Typography;
 
 const BLOCKS: { [key: string]: string } = {
   program: 'Программа',
   translation: 'Видео трансляция',
+  extra: 'Полезные материалы',
 };
 
 const Sandbox = () => (
   <Layout>
     <Header navigation={BLOCKS} />
     <Title className={s.title}>Игротека для самых маленьких</Title>
+    <Layout className={s.section}>
+      <Paragraph>Приветствуем Вас на площадке «Игротека для самых маленьких»!</Paragraph>
+      <Paragraph>
+        Дорогие ребята! А также мамы, папы, бабушки и дедушки!
+        Для Вас работает площадка, на которой каждый ребенок может в
+        доступной форме получить знания о мире денег и правилах,
+        которые нужно соблюдать, чтобы подружиться с финансами.
+      </Paragraph>
+      <Paragraph>
+        Вы можете посмотреть трансляции и перенять опыт лучших
+        игропрактиков региона, а также, пройдя по ссылкам всей
+        семьей стать жителями удивительной и волшебной страны
+        финансовых знаний. Играйте, получайте новые знания и
+        применяйте их вместе с новыми и интересными игровыми продуктами.
+      </Paragraph>
+      <Paragraph><b>Помните, игра – это серьезно!</b></Paragraph>
+    </Layout>
     <Layout id="program" className={s.section}>
       <Title level={2}>Программа</Title>
       <Row gutter={[16, 0]} className={s.aboutContent}>
@@ -77,6 +95,24 @@ const Sandbox = () => (
           <Chat topic="sandbox" />
         </Col>
       </Row>
+    </Layout>
+    <Layout className={s.section} id="extra">
+      <Title level={2}>Полезные материалы</Title>
+      <Paragraph>Приветствуем Вас на площадке «Игротека для самых маленьких»!</Paragraph>
+      <Paragraph>
+        Дорогие ребята! А также мамы, папы, бабушки и дедушки!
+        Для Вас работает площадка, на которой каждый ребенок может в
+        доступной форме получить знания о мире денег и правилах,
+        которые нужно соблюдать, чтобы подружиться с финансами.
+      </Paragraph>
+      <Paragraph>
+        Вы можете посмотреть трансляции и перенять опыт лучших
+        игропрактиков региона, а также, пройдя по ссылкам всей
+        семьей стать жителями удивительной и волшебной страны
+        финансовых знаний. Играйте, получайте новые знания и
+        применяйте их вместе с новыми и интересными игровыми продуктами.
+      </Paragraph>
+      <Paragraph><b>Помните, игра – это серьезно!</b></Paragraph>
     </Layout>
     <Footer />
   </Layout>

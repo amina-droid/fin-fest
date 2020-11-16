@@ -30,6 +30,7 @@ import sokolovaImg from './img/Sokolova.jpg';
 import almukhametovImg from './img/Almukhametov.jpg';
 import lyubanenkoImg from './img/Lyubanenko.jpg';
 import litominImg from './img/Litomin.jpg';
+import nikitenkoImg from './img/Nikitenko.jpg';
 
 type Lector = {
   name: string;
@@ -122,7 +123,7 @@ export const smelzer: Lector = {
 };
 
 export const nikitenko: Lector = {
-  avatar: '',
+  avatar: nikitenkoImg,
   name: 'Юлия Никитенко',
   description: 'Экономист. Частная практика по финансовому консалтингу.',
 };

@@ -11,7 +11,7 @@ import { firstArea, lectors } from './dictionaries';
 import { Footer } from '../../components/Footer';
 import { Test } from '../../components/Test';
 
-const { Title } = Typography;
+const { Title, Paragraph } = Typography;
 
 const BLOCKS: { [key: string]: string } = {
   program: 'Программа',
@@ -22,6 +22,17 @@ const Gamezone = () => (
   <Layout>
     <Header navigation={BLOCKS} />
     <Title className={s.title}>Игропрактика</Title>
+    <Layout className={s.section}>
+      <Paragraph>Приветствуем Вас на площадке «Игропрактика»!</Paragraph>
+      <Paragraph>Здесь вы можете посмотреть прямые
+        трансляции с турниров по финансовым играм-тренажерам и «поболеть»
+        за их участников, а также почувствовать себя профессиональным
+        финансистом перейдя по ссылкам и став участникам игр в формате онлайн.
+        Вас ждет профессиональная команда компании «ИгроN – сервис»,
+        опытные модераторы и море интересной и полезной информации.
+      </Paragraph>
+      <Paragraph><b>Помните, игра – это серьезно!</b></Paragraph>
+    </Layout>
     <Layout id="program" className={s.section}>
       <Title level={2}>Программа</Title>
       <Row gutter={[16, 0]} className={s.aboutContent}>

@@ -8,6 +8,7 @@ import { useQuery, useSubscription } from '@apollo/client';
 import { Map } from '../../components/Map';
 import Reviews from '../../components/Reviews/Reviews';
 import about from '../../img/about.jpg';
+import finpotreb from '../../img/finpotreb.png';
 import partnersDictionary from './partners/dictionary';
 
 import s from './Main.module.sass';
@@ -18,7 +19,9 @@ import {
 } from '../../apollo';
 
 const { Content } = Layout;
-const { Title, Paragraph, Text } = Typography;
+const {
+  Title, Paragraph, Text, Link,
+} = Typography;
 
 const BLOCKS: { [key: string]: string } = {
   main: 'Главная',
@@ -80,6 +83,9 @@ const Main = () => {
             loading={loading}
             title={<Title level={5}>Количество пользователей</Title>}
           />
+          <div className={s.statisticImg}>
+            <img src={finpotreb} alt="logo" />
+          </div>
           <Statistic.Countdown
             value={DEADLINE}
             format="HH:mm:ss"
@@ -151,6 +157,9 @@ const Main = () => {
                     Светлана Мельцер
                   </Text>
                 </Paragraph>
+                <Link href={`${process.env.PUBLIC_URL}/Polojenie.pdf`} target="_blank">
+                  Положение о фестивале
+                </Link>
               </Typography>
             </Col>
             <Col span={8} xs={24} sm={24} md={8}>
@@ -168,6 +177,9 @@ const Main = () => {
         </Layout>
         <Layout id="partners" className={s.partners}>
           <Title>Партнеры</Title>
+          <Paragraph>Мы благодарим наших партнеров за участие в
+            организации Фестиваля и помощь в формировании призового фонда!
+          </Paragraph>
           <div className={s.partnersContainer}>
             {partnersDictionary.map(partner => (
               <a

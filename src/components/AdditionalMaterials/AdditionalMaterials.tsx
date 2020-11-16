@@ -26,7 +26,7 @@ const AdditionalMaterials: React.FC<Props> = ({ links }) => (
       )}
       <ul>{link.links.map(({ name: linkName, href, description }) => (
         <li key={href}>
-          <Typography.Link href={href}>{linkName}</Typography.Link>
+          <Typography.Link target="_blank" href={href}>{linkName}</Typography.Link>
           {description && (
             <div className={s.description}>{description}</div>
           )}

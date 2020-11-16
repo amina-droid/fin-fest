@@ -7,9 +7,10 @@ import Header from '../../components/Header/Header';
 
 import s from './Sandbox.module.sass';
 import { Chat } from '../../components/Chat';
-import { firstArea, lectors } from './dictionaries';
+import { firstArea, lectors, links } from './dictionaries';
 import { Footer } from '../../components/Footer';
 import { Test } from '../../components/Test';
+import { AdditionalMaterials } from '../../components/AdditionalMaterials';
 
 const { Title, Paragraph } = Typography;
 
@@ -98,21 +99,13 @@ const Sandbox = () => (
     </Layout>
     <Layout className={s.section} id="extra">
       <Title level={2}>Полезные материалы</Title>
-      <Paragraph>Приветствуем Вас на площадке «Игротека для самых маленьких»!</Paragraph>
-      <Paragraph>
-        Дорогие ребята! А также мамы, папы, бабушки и дедушки!
-        Для Вас работает площадка, на которой каждый ребенок может в
-        доступной форме получить знания о мире денег и правилах,
-        которые нужно соблюдать, чтобы подружиться с финансами.
+      <Paragraph>Команда «Игротеки для самых маленьких» желает Вам и Вашим детям
+        интересно провести время и сделать
+        первые шаги к успеху в удивительном мире финансов
       </Paragraph>
       <Paragraph>
-        Вы можете посмотреть трансляции и перенять опыт лучших
-        игропрактиков региона, а также, пройдя по ссылкам всей
-        семьей стать жителями удивительной и волшебной страны
-        финансовых знаний. Играйте, получайте новые знания и
-        применяйте их вместе с новыми и интересными игровыми продуктами.
+        <AdditionalMaterials links={links} />
       </Paragraph>
-      <Paragraph><b>Помните, игра – это серьезно!</b></Paragraph>
     </Layout>
     <Footer />
   </Layout>

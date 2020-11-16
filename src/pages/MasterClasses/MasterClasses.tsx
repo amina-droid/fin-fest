@@ -11,7 +11,7 @@ import { firstArea, lectors, secondArea } from './dictionaries';
 import { Footer } from '../../components/Footer';
 import { Test } from '../../components/Test';
 
-const { Title } = Typography;
+const { Title, Paragraph } = Typography;
 
 const BLOCKS: { [key: string]: string } = {
   program: 'Программа',
@@ -22,6 +22,29 @@ const MasterClasses = () => (
   <Layout>
     <Header navigation={BLOCKS} />
     <Title className={s.title}>Мастер классы и тренинги</Title>
+    <Layout className={s.section}>
+      <Paragraph>Приветствуем Вас на площадке «Финансовый лекторий»!</Paragraph>
+      <Paragraph>Уважаемый гость! Вы пришли на одну из самых
+        значимых площадок нашего фестиваля! Сегодня
+        для Вас работаю лучшие лекторы и эксперты,
+        которые в интересной и доступной форме рассказывают
+        о самых важных финансовых вопросах, которые должны
+        составлять основу знаний каждого финансового
+        грамотного человека! Вы можете посмотреть трансляции
+        лекций прямо с площадок фестиваля и задать вопросы
+        в чате, а также ознакомится со специально записанными
+        для нашего события лекциями крупных федеральных
+        экспертов и ознакомится с другими полезными видеоматериалами!
+      </Paragraph>
+      <Paragraph>Мы надеемся, что на нашей площадке Вы
+        получите много полезной и интересной информации!
+      </Paragraph>
+      <Paragraph>Команда экспертов площадки «Финансовый лекторий»
+        благодарит за интерес к теме повышения финансовой и
+        потребительской грамотности. Надеемся, что
+        наш опыт и знания будут Вам полезны
+      </Paragraph>
+    </Layout>
     <Layout id="program" className={s.section}>
       <Title level={2}>Программа</Title>
       <Row gutter={[16, 0]} className={s.aboutContent}>

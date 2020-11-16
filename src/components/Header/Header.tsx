@@ -25,7 +25,7 @@ type HeaderProps = {
     }
 }
 
-const Header: FC<HeaderProps> = ({ navigation }) => {
+const Header: FC<HeaderProps> = ({ navigation = {} }) => {
   const history = useHistory();
 
   const logoHandler = () => {
@@ -47,7 +47,7 @@ const Header: FC<HeaderProps> = ({ navigation }) => {
         >Финансовый фестиваль
         </div>
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['']} selectable={false}>
-          {navigation && Object.keys(navigation).map(key => (
+          {Object.keys(navigation).map(key => (
             <Menu.Item
               key={key}
               active={false}

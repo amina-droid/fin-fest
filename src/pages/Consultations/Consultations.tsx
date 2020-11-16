@@ -7,21 +7,48 @@ import Header from '../../components/Header/Header';
 
 import s from './Consultations.module.sass';
 import { Chat } from '../../components/Chat';
-import { firstArea, lectors, secondArea } from './dictionaries';
+import {
+  firstArea, lectors, secondArea, links,
+} from './dictionaries';
 import { Footer } from '../../components/Footer';
 import { Test } from '../../components/Test';
+import { AdditionalMaterials } from '../../components/AdditionalMaterials';
 
-const { Title } = Typography;
+const { Title, Paragraph } = Typography;
 
 const BLOCKS: { [key: string]: string } = {
   program: 'Программа',
   translation: 'Видео трансляция',
+  extra: 'Полезные материалы',
 };
 
 const Consultations = () => (
   <Layout>
     <Header navigation={BLOCKS} />
     <Title className={s.title}>Правовые и финансовые консультации</Title>
+    <Layout className={s.section}>
+      <Paragraph>Приветствуем Вас на площадке «Консультации»!</Paragraph>
+      <Paragraph>
+        У каждого из нас бывают ситуации, когда требуется помощь
+        квалифицированного специалиста. Часто они возникают и в
+        финансовой сфере. Если Вы считаете, что нарушены Ваши
+        потребительские или финансовые права, если к Вас
+        есть вопросы, на которые нужно получить ответ –
+        добро пожаловать на нашу площадку. Для Вас в онлайн
+        режиме работают квалифицированные эксперты и
+        практики-правозащитники. Они ответят на Ваши
+        вопросы, которые Вы можете задать в чате, а
+        в случае если время эфира не позволит
+        ответить на всё – Вам придет квалифицированный
+        ответ на электронную почту, которую Вы можете
+        указать при написании вопроса в чат.
+      </Paragraph>
+      <Paragraph>
+        Воспользуйтесь уникальной возможностью
+        бесплатно получить бесценный опыт и знания
+        непосредственно по Вашей проблеме
+      </Paragraph>
+    </Layout>
     <Layout id="program" className={s.section}>
       <Title level={2}>Программа</Title>
       <Row gutter={[16, 0]} className={s.aboutContent}>
@@ -115,6 +142,17 @@ const Consultations = () => (
           </Row>
         </Tabs.TabPane>
       </Tabs>
+    </Layout>
+    <Layout className={s.section} id="extra">
+      <Title level={2}>Полезные материалы</Title>
+      <Paragraph>Команда экспертов площадки «Консультации» благодарит за интерес
+        к теме повышения финансовой и потребительской грамотности.
+        Помните, неразрешимых проблем не бывает,
+        бывает только недостаток знаний о то, как их можно решить
+      </Paragraph>
+      <Paragraph>
+        <AdditionalMaterials links={links} />
+      </Paragraph>
     </Layout>
     <Footer />
   </Layout>

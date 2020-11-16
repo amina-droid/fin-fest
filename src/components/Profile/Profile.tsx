@@ -29,6 +29,7 @@ const Profile: React.FC = () => {
 
   const vkSignHandler = async (e: any) => {
     e.preventDefault();
+    const loginWindow = window.open('', 'OAuth')!;
     setAuthLoading(true);
 
     async function authHandler(this: Window, event: MessageEvent) {
@@ -66,8 +67,7 @@ const Profile: React.FC = () => {
       });
 
       const { url } = data.getVKOAuthRedirect;
-      // eslint-disable-next-line security/detect-non-literal-fs-filename
-      const loginWindow = window.open(url, 'OAuth')!;
+      loginWindow.location.href = url;
 
       window.addEventListener('message', authHandler.bind(loginWindow));
     } catch (error) {

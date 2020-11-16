@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import {
-  Avatar, Badge, Button, Menu,
+  Avatar, Badge, Button, Menu, Modal,
 } from 'antd';
 import { LoginOutlined } from '@ant-design/icons';
 import { useApolloClient, useMutation } from '@apollo/client';
@@ -9,10 +9,11 @@ import {
   GET_VK_OATH_REDIRECT_URL, GetVKOAuthRedirect,
 } from '../../apollo';
 import { AuthContext } from '../../context/auth';
-import { SCORES_WORDS, PRODUCT_WORDS } from '../../dictionaries';
+import { SCORES_WORDS, PRIZE_WORDS } from '../../dictionaries';
 
 import s from './Profile.module.sass';
 
+const PRIZE_REGEX = /Приз: (.*?),/;
 const Profile: React.FC = () => {
   const [authLoading, setAuthLoading] = useState(false);
   const {
@@ -25,7 +26,11 @@ const Profile: React.FC = () => {
   const [
     authVK,
   ] = useMutation<AuthVK, AuthVKVariables>(AUTH_VK);
+  const [isOpenModal, setOpenModal] = useState(false);
   const apolloClient = useApolloClient();
+
+  const onPrizeOpen = () => setOpenModal(true);
+  const onPrizeClose = () => setOpenModal(false);
 
   const vkSignHandler = async (e: any) => {
     e.preventDefault();
@@ -93,31 +98,52 @@ const Profile: React.FC = () => {
   const scores = userState?.score || '0';
   const codes = Boolean(userState?.codes?.length) && userState?.codes;
   return (
-    <Menu theme="dark" defaultSelectedKeys={['']} mode="horizontal">
-      <Menu.SubMenu
-        key="key1"
-        title={(
-          <>
-            <span className={s.profileName}>{user?.name.givenName}</span>
-            <Badge count={scores} size="small">
-              <Avatar src={user?.photos[0].url} />
-            </Badge>
-          </>
-        )}
-      >
-        <Menu.Item>{user?.name.givenName} {user?.name.familyName}</Menu.Item>
-        <Menu.Item disabled>У вас <b>{scores} {SCORES_WORDS[scores]}</b></Menu.Item>
-        {codes
+    <>
+      <Menu theme="dark" defaultSelectedKeys={['']} mode="horizontal">
+        <Menu.SubMenu
+          key="key1"
+          title={(
+            <>
+              <span className={s.profileName}>{user?.name.givenName}</span>
+              <Badge count={scores} size="small">
+                <Avatar src={user?.photos[0].url} />
+              </Badge>
+            </>
+          )}
+        >
+          <Menu.Item>{user?.name.givenName} {user?.name.familyName}</Menu.Item>
+          <Menu.Item disabled>У вас <b>{scores} {SCORES_WORDS[scores]}</b></Menu.Item>
+          {codes
         && (
-          <Menu.Item disabled>
-            У вас <b>{codes.length} {PRODUCT_WORDS[codes.length]}</b>
+          <Menu.Item onClick={onPrizeOpen} disabled={!codes.length}>
+            У вас <b>{codes.length} {PRIZE_WORDS[codes.length]}</b>
           </Menu.Item>
         )}
-        <Menu.Item>
-          <Button type="text" block danger onClick={logout}>Выйти</Button>
-        </Menu.Item>
-      </Menu.SubMenu>
-    </Menu>
+          <Menu.Item>
+            <Button type="text" block danger onClick={logout}>Выйти</Button>
+          </Menu.Item>
+        </Menu.SubMenu>
+      </Menu>
+      <Modal
+        title="Мои призы"
+        visible={isOpenModal}
+        onCancel={onPrizeClose}
+        footer={<Button onClick={onPrizeClose}>Закрыть</Button>}
+      >
+        {codes && (
+          <ul>{codes.map(code => {
+            const groups = PRIZE_REGEX.exec(code);
+            if (groups) {
+              const prizeName = groups[1];
+
+              return <li key={code}>{prizeName}</li>;
+            }
+            return null;
+          })}
+          </ul>
+        )}
+      </Modal>
+    </>
   );
 };
 

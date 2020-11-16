@@ -1,0 +1,6 @@
+mutation BuyProduct($productId: ObjectId!) {
+    purchase(productId: $productId) {
+        code
+        newScore
+    }
+}

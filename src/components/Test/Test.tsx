@@ -5,11 +5,13 @@ import {
   Button, Modal, Typography,
 } from 'antd';
 import { useLazyQuery, useMutation } from '@apollo/client';
-import { GET_QUESTIONS, GetQuestions } from '../../apollo';
+import {
+  GET_QUESTIONS, GetQuestions,
+  SEND_ANSWERS, SendAnswers, SendAnswersVariables,
+} from '../../apollo';
 import Question from './Question/Question';
 
 import s from './Test.module.sass';
-import { SEND_ANSWERS, SendAnswers, SendAnswersVariables } from '../../apollo/mutations/SendAnswers';
 import { AuthContext } from '../../context/auth';
 import { QUESTION_WORDS } from '../../dictionaries';
 

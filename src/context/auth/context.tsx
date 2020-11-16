@@ -119,9 +119,8 @@ export const AuthContextProvider: React.FC = ({ children }) => {
   const updateCodes = (newCode: string) => {
     setUserState(prevState => {
       const prevCodes = prevState?.codes || [];
-
       return {
-        score: prevState?.score || null,
+        score: prevState?.score || 0,
         codes: [
           ...prevCodes,
           newCode,

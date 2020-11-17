@@ -1,6 +1,7 @@
 import React, {
   useCallback, useContext, useEffect, useState,
 } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Button, Modal, Typography,
 } from 'antd';
@@ -95,6 +96,11 @@ const Test: React.FC<Props> = ({ page }) => {
         block
       >{disabled ? 'Вы уже прошли тест этой площадки' : 'Пройти тест'}
       </Button>
+      {disabled && (
+        <div className={s.link}>
+          Перейти в <Link to="/shop" component={Typography.Link}>магазин подарков</Link>!
+        </div>
+      )}
       <Modal
         visible={isOpen}
         onCancel={closeModal}

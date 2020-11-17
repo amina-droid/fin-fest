@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
+
 import './index.sass';
 // @ts-ignore
 import localization from 'moment/locale/ru';

@@ -56,7 +56,7 @@ export const AuthContext = React.createContext<State>({
   },
 });
 
-export const DEADLINE = moment('2020-11-18');
+export const DEADLINE = moment.utc('2020-11-18 10:00');
 
 export const ALLOWED_USERS = [
   '5fafa98dea33a40772fea14b', // Melzer

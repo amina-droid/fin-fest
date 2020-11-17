@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Typography, Layout, Timeline, Row, Col, Carousel, Card, Avatar, Tabs,
 } from 'antd';
-import ReactPlayer from 'react-player';
 import Header from '../../components/Header/Header';
 
 import s from './Lector.module.sass';
@@ -10,6 +9,7 @@ import { Chat } from '../../components/Chat';
 import { firstArea, lectors, secondArea } from './dictionaries';
 import { Footer } from '../../components/Footer';
 import { Test } from '../../components/Test';
+import { VideoPlayer } from '../../components/Video';
 
 const { Title, Paragraph } = Typography;
 
@@ -102,12 +102,7 @@ const Lector = () => (
             <Col span={16} xs={24} sm={24} md={16}>
               <Card>
                 <div className={s.cardBody}>
-                  <ReactPlayer
-                    height="50vh"
-                    width="100%"
-                    controls
-                    url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                  />
+                  <VideoPlayer place="lector/1" />
                   <Test page="lector" />
                 </div>
               </Card>
@@ -122,12 +117,7 @@ const Lector = () => (
             <Col span={16} xs={24} sm={24} md={16}>
               <Card>
                 <div className={s.cardBody}>
-                  <ReactPlayer
-                    height="50vh"
-                    width="100%"
-                    controls
-                    url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                  />
+                  <VideoPlayer place="lector/2" />
                 </div>
                 <Test page="lector" />
               </Card>

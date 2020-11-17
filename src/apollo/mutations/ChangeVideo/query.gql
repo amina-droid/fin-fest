@@ -1,0 +1,3 @@
+mutation ChangeVideo($videoId: ObjectId!, $newUrl: String!) {
+    changeVideo(videoId: $videoId, newUrl: $newUrl)
+}

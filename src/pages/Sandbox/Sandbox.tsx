@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Typography, Layout, Timeline, Row, Col, Carousel, Card, Avatar,
 } from 'antd';
-import ReactPlayer from 'react-player';
 import Header from '../../components/Header/Header';
 
 import s from './Sandbox.module.sass';
@@ -11,6 +10,7 @@ import { firstArea, lectors, links } from './dictionaries';
 import { Footer } from '../../components/Footer';
 import { Test } from '../../components/Test';
 import { AdditionalMaterials } from '../../components/AdditionalMaterials';
+import { VideoPlayer } from '../../components/Video';
 
 const { Title, Paragraph } = Typography;
 
@@ -82,12 +82,7 @@ const Sandbox = () => (
         <Col span={16} xs={24} sm={24} md={16}>
           <Card>
             <div className={s.cardBody}>
-              <ReactPlayer
-                height="50vh"
-                width="100%"
-                controls
-                url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-              />
+              <VideoPlayer place="sandbox" />
             </div>
             <Test page="sandbox" />
           </Card>

@@ -1,0 +1,5 @@
+subscription SubscribeToNewVideo($placeName: String!) {
+    subscribeToVideoChange(topic: $placeName) {
+        url
+    }
+}

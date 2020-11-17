@@ -8,10 +8,11 @@ import {
   AUTH_VK, AuthVK, AuthVKVariables,
   GET_VK_OATH_REDIRECT_URL, GetVKOAuthRedirect,
 } from '../../apollo';
-import { AuthContext } from '../../context/auth';
+import { AuthContext, ALLOWED_USERS } from '../../context/auth';
 import { SCORES_WORDS, PRIZE_WORDS } from '../../dictionaries';
 
 import s from './Profile.module.sass';
+import { VideoModal } from './VideoModal';
 
 const PRIZE_REGEX = /Приз: (.*?),/;
 const Profile: React.FC = () => {
@@ -96,6 +97,8 @@ const Profile: React.FC = () => {
   }
 
   const scores = userState?.score || '0';
+  const hasAccess = Boolean(user)
+    && ALLOWED_USERS.some(id => user?.id === id);
   const codes = Boolean(userState?.codes?.length) && userState?.codes;
   return (
     <>
@@ -112,6 +115,7 @@ const Profile: React.FC = () => {
           )}
         >
           <Menu.Item>{user?.name.givenName} {user?.name.familyName}</Menu.Item>
+          {hasAccess && <VideoModal />}
           <Menu.Item disabled>У вас <b>{scores} {SCORES_WORDS[scores]}</b></Menu.Item>
           {codes
         && (

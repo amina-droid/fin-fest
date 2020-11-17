@@ -30,6 +30,7 @@ type Message {
 type Mutation {
     answers(answers: JSON!): Result!
     authVK(code: String!): AuthResponse!
+    changeVideo(newUrl: String!, videoId: ObjectId!): Boolean!
     purchase(productId: ObjectId!): PurchaseResult!
     sendChatMessage(message: String!, topic: String!): Boolean!
 }
@@ -57,6 +58,8 @@ type Query {
     questions: [Question!]!
     reviews: [Review!]!
     usersCount: Float!
+    video(videoName: String!): Video!
+    videos: [Video!]!
 }
 
 type Question {
@@ -81,6 +84,7 @@ type Review {
 type Subscription {
     newUserRegistered: Boolean!
     subscribeToChat(topic: String!): Message!
+    subscribeToVideoChange(topic: String!): Video!
 }
 
 type UserName {
@@ -89,6 +93,13 @@ type UserName {
 }
 
 type UserPhoto {
+    url: String!
+}
+
+type Video {
+    _id: ObjectId!
+    name: String!
+    placeName: String!
     url: String!
 }
 

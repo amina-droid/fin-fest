@@ -5,3 +5,5 @@ export * from './GetUserInitialData';
 export * from './GetQuestions';
 export * from './GetProducts';
 export * from './GetLastChatMessages';
+export * from './GetVideo';
+export * from './GetVideos';

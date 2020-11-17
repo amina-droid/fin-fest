@@ -1,0 +1,7 @@
+query GetVideos {
+    videos {
+        url
+        _id
+        name
+    }
+}

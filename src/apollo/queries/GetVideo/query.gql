@@ -1,0 +1,5 @@
+query GetVideo($place: String!) {
+    video(videoName: $place) {
+        url
+    }
+}

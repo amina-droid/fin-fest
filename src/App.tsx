@@ -2,12 +2,15 @@ import React, { FC, useContext } from 'react';
 import {
   BrowserRouter, Route, Redirect, RouteProps,
 } from 'react-router-dom';
+import moment from 'moment';
 import { ApolloProvider } from '@apollo/client';
 import 'antd/dist/antd.css';
 import './App.css';
 import Main from './pages/Main/Main';
 import { client } from './apollo';
-import { ALLOWED_USERS, AuthContext, AuthContextProvider } from './context/auth';
+import {
+  ALLOWED_USERS, AuthContext, AuthContextProvider, DEADLINE,
+} from './context/auth';
 import Lector from './pages/Lector/Lector';
 import Gamezone from './pages/Gamezone/Gamezone';
 import Sandbox from './pages/Sandbox/Sandbox';
@@ -21,8 +24,11 @@ import RouterScroll from './components/RouterScroll';
 
 const ProtectedRoute: FC<RouteProps> = ({ component: Component, ...rest }) => {
   const { user } = useContext(AuthContext);
+  const current = moment();
 
-  const hasAccess = Boolean(user) && ALLOWED_USERS.some(id => user?.id === id);
+  const hasAccess = Boolean(user)
+    && (ALLOWED_USERS.some(id => user?.id === id)
+    || current > DEADLINE);
 
   return (
     <Route

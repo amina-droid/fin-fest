@@ -14,6 +14,7 @@ import s from './Main.module.sass';
 import Header, { scrollTo } from '../../components/Header/Header';
 import { Footer } from '../../components/Footer';
 import { Partners } from '../../components/Partners';
+import { DEADLINE } from '../../context/auth';
 import {
   GET_USER_COUNT, GetUserCount, SUBSCRIBE_TO_NEW_USER, SubscribeToNewUser,
 } from '../../apollo';
@@ -30,7 +31,7 @@ const BLOCKS: { [key: string]: string } = {
   reviews: 'Отзывы',
   partners: 'Партнеры',
 };
-const DEADLINE = moment('2020-11-18').toISOString();
+
 const Main = () => {
   const [usersCount, setUsersCount] = useState<number>(0);
   const { data, loading } = useQuery<GetUserCount>(GET_USER_COUNT);
@@ -87,7 +88,7 @@ const Main = () => {
             <img src={finpotreb} alt="logo" />
           </div>
           <Statistic.Countdown
-            value={DEADLINE}
+            value={DEADLINE.toISOString()}
             format="HH:mm:ss"
             title={<Title level={5}>До начала осталось</Title>}
           />

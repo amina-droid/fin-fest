@@ -6,7 +6,8 @@
 import React, { useContext, useState } from 'react';
 import { LinkProps, useHistory } from 'react-router-dom';
 import { Button, Modal } from 'antd';
-import { ALLOWED_USERS, AuthContext } from '../../../context/auth';
+import moment from 'moment';
+import { ALLOWED_USERS, AuthContext, DEADLINE } from '../../../context/auth';
 
 type Props = LinkProps & {
   className?: string;
@@ -18,8 +19,11 @@ const SVGLink: React.FC<Props> = ({
   const { user } = useContext(AuthContext);
   const [visible, setVisible] = useState(false);
   const history = useHistory();
+  const current = moment();
 
-  const hasAccess = Boolean(user) && ALLOWED_USERS.some(id => user?.id === id);
+  const hasAccess = Boolean(user) && (
+    ALLOWED_USERS.some(id => user?.id === id)
+    || current > DEADLINE);
 
   const handlerClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();

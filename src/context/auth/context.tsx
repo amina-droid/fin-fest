@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import jwtDecode from 'jwt-decode';
 import { message } from 'antd';
 import { useLazyQuery } from '@apollo/client';
+import moment from 'moment';
 import { GET_USER_INITIAL_DATA, GetUserInitialData } from '../../apollo';
 import { SCORES_WORDS } from '../../dictionaries';
 
@@ -55,11 +56,14 @@ export const AuthContext = React.createContext<State>({
   },
 });
 
+export const DEADLINE = moment('2020-11-18');
+
 export const ALLOWED_USERS = [
   '5fafa98dea33a40772fea14b', // Melzer
   '5faee6377cba153604a248a4', // Eugeny
   '5fa809c6d6f8d0cae83f4345', // Amina
   '5faefe8dea33a40772fea14a', // Marya
+  '5fb377eeea34a931505cd2fb', // Pasha
 ];
 
 const INITIAL_TOKEN = localStorage.getItem('token');

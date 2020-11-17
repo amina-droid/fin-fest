@@ -12,7 +12,7 @@ import { AuthContext, ALLOWED_USERS } from '../../context/auth';
 import { SCORES_WORDS, PRIZE_WORDS } from '../../dictionaries';
 
 import s from './Profile.module.sass';
-import { VideoModal } from './VideoModal';
+import { useVideoModal } from './VideoModal';
 
 const PRIZE_REGEX = /Приз: (.*?),/;
 const Profile: React.FC = () => {
@@ -24,6 +24,7 @@ const Profile: React.FC = () => {
     userState,
     user,
   } = useContext(AuthContext);
+  const [VideoButton, VideoModal] = useVideoModal();
   const [
     authVK,
   ] = useMutation<AuthVK, AuthVKVariables>(AUTH_VK);
@@ -114,8 +115,8 @@ const Profile: React.FC = () => {
             </>
           )}
         >
-          <Menu.Item>{user?.name.givenName} {user?.name.familyName}</Menu.Item>
-          {hasAccess && <VideoModal />}
+          <Menu.Item disabled>{user?.name.givenName} {user?.name.familyName}</Menu.Item>
+          {hasAccess && <Menu.Item><VideoButton /></Menu.Item>}
           <Menu.Item disabled>У вас <b>{scores} {SCORES_WORDS[scores]}</b></Menu.Item>
           {codes
         && (
@@ -128,6 +129,7 @@ const Profile: React.FC = () => {
           </Menu.Item>
         </Menu.SubMenu>
       </Menu>
+      <VideoModal />
       <Modal
         title="Мои призы"
         visible={isOpenModal}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Button, Form, Input, Menu, Modal,
+  Button, Form, Input, Modal,
 } from 'antd';
 import { useMutation, useQuery } from '@apollo/client';
 import {
@@ -49,27 +49,26 @@ const VideoForm: React.FC<{ video: Video }> = ({ video }) => {
   );
 };
 
-export const VideoModal = () => {
+type TupleVideoModal = [() => JSX.Element, () => JSX.Element]
+export const useVideoModal: () => TupleVideoModal = () => {
   const [visible, setVisible] = useState(false);
   const { data } = useQuery<GetVideos>(GET_VIDEOS);
 
   const modalOpen = () => setVisible(true);
   const modalClose = () => setVisible(false);
 
-  return (
-    <>
-      <Menu.Item>
-        <Button type="dashed" ghost block onClick={modalOpen}>Ссылки на видео</Button>
-      </Menu.Item>
+  return [
+    () => <Button type="dashed" ghost block onClick={modalOpen}>Ссылки на видео</Button>,
+    () => (
       <Modal
         visible={visible}
         onCancel={modalClose}
         footer={false}
       >
         {
-          data?.videos.map(video => <VideoForm video={video} key={video._id} />)
+        data?.videos.map(video => <VideoForm video={video} key={video._id} />)
         }
       </Modal>
-    </>
-  );
+    ),
+  ] as TupleVideoModal;
 };

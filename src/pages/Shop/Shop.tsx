@@ -134,6 +134,13 @@ const Shop: FC = () => {
           Сделайте свое участие не только приятным,
           но и полезным! Призы ждут Вас!
         </Paragraph>
+        <Paragraph>
+          <b>Контакты для получения призов:</b>
+          <ul>
+            <li>Электронная почта: <a href="mailto:politreyd@bk.ru">politreyd@bk.ru</a></li>
+            <li>Телефон: <a href="tel:+73452381814">8(3452) 38-18-14</a></li>
+          </ul>
+        </Paragraph>
       </Layout>
       <Layout id="products" className={s.section}>
         <Title level={2}>Наши призы</Title>

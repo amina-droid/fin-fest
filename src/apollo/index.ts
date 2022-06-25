@@ -10,11 +10,11 @@ export * from './mutations';
 export * from './subscriptions';
 
 const GRAPHQL_URL = process.env.NODE_ENV === 'production'
-  ? 'http://api.finfest-tyumen.ru/graphql'
+  ? 'https://api.finfest-tyumen.ru/graphql'
   : 'https://fin-fest.loca.lt/graphql';
 
 const WS_GRAPHQL_URL = process.env.NODE_ENV === 'production'
-  ? 'ws://api.finfest-tyumen.ru/graphql'
+  ? 'wss://api.finfest-tyumen.ru/graphql'
   : 'wss://fin-fest.loca.lt/graphql';
 
 const wsLink = new WebSocketLink({
